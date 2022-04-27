@@ -1,5 +1,5 @@
 site_name: DeepTS_Forecasting
-# site_url: http://www.jieyu.ai
+site_url: http://yunxileo.github.io/deepts_forecasting
 repo_url: https://github.com/yunxileo/deepts_forecasting
 repo_name: deepts_forecasting
 #strict: true
@@ -8,6 +8,7 @@ nav:
   - installation: installation.md
   - usage: usage.md
   - modules: api.md
+  - API: reference/
   - contributing: contributing.md
   - authors: authors.md
   - history: history.md
@@ -24,8 +25,8 @@ theme:
     - navigation.tabs.sticky
 markdown_extensions:
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      # emoji_index: !!python/name:materialx.emoji.twemoji
+      # emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.mark
@@ -49,6 +50,20 @@ plugins:
   - search:
       lang: en
   - mkdocstrings:
+      handlers:
+        python:
+          import:
+          - https://docs.python.org/3/objects.inv
+          selection:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: yes
+          rendering:
+            show_submodules: no
+            docstring_section_style: list
+            members_order: alphabetical
+            show_category_heading: no
+            merge_init_into_class: yes
       watch:
         - deepts_forecasting
 extra:

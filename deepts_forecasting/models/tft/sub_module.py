@@ -1,5 +1,9 @@
 """
-Implementation of ``nn.Modules`` for temporal fusion transformer.
+Implementation of ``nn.Modules`` for Temporal Fusion Transformer from PyTorch-Forecasting:
+https://github.com/jdb78/pytorch-forecasting
+
+PyTorch Forecasting v0.9.1 License from https://github.com/jdb78/pytorch-forecasting/blob/master/LICENSE
+
 """
 import math
 from typing import Dict, List, Tuple, Union

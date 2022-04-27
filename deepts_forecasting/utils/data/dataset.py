@@ -1140,6 +1140,7 @@ if __name__ == "__main__":
         )  # categorical covariates have to be of string type
 
         # print(test_data_with_covariates.head())
+
         training_cutoff = data_with_covariates["time_idx"].max() - 6
         # create the dataset from the pandas dataframe
         rawdata = data_with_covariates[lambda x: x.time_idx <= training_cutoff]
