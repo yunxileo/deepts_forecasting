@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/api/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/authors/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/contributing/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/history/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/installation/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
-         <lastmod>2022-04-21</lastmod>
+         <loc>http://yunxileo.github.io/deepts_forecasting/usage/</loc>
+         <lastmod>2022-04-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
