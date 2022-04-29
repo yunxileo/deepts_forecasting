@@ -69,16 +69,16 @@ jobs:
         run: >-
           ls -l
 
-      - name: create github release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          body_path: ./CHANGELOG.md
-          files: dist/*.whl
-          draft: false
-          prerelease: false
+#      - name: create github release
+#        id: create_release
+#        uses: softprops/action-gh-release@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          body_path: ./CHANGELOG.md
+#          files: dist/*.whl
+#          draft: false
+#          prerelease: false
 
       - name:
         uses: pypa/gh-action-pypi-publish@release/v1
