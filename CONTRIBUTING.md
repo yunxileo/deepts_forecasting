@@ -52,7 +52,7 @@ Ready to contribute? Here's how to set up `deepts_forecasting` for local develop
 2. Clone your fork locally
 
 ```
-    $ git clone git@github.com:your_name_here/deepts_forecasting.git
+$ git clone git@github.com:your_name_here/deepts_forecasting.git
 ```
 
 3. Ensure [poetry](https://python-poetry.org/docs/) is installed.
@@ -74,7 +74,7 @@ Ready to contribute? Here's how to set up `deepts_forecasting` for local develop
    tests, including testing other Python versions, with tox:
 
 ```
-    $ tox
+$ tox
 ```
 
 7. Commit your changes and push your branch to GitHub:
@@ -95,13 +95,15 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
-3. The pull request should work for Python 3.6, 3.7, 3.8, 3.9 and for PyPy. Check
+3. The pull request should work for Python  3.8, 3.9 and for PyPy. Check
    https://github.com/yunxileo/deepts_forecasting/actions
    and make sure that the tests pass for all supported Python versions.
 
-## Tips```
-    $ pytest tests.test_deepts_forecasting
-```To run a subset of tests.
+## Tips
+To run a subset of tests.
+```
+$ pytest tests.test_deepts_forecasting
+```
 
 
 ## Deploying

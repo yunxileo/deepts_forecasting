@@ -8,7 +8,7 @@ nav:
   - installation: installation.md
   - usage: usage.md
   - modules: api.md
-  - API: reference/
+#  - API: reference/
   - contributing: contributing.md
   - authors: authors.md
   - history: history.md
@@ -49,23 +49,23 @@ plugins:
   - include-markdown
   - search:
       lang: en
-  - mkdocstrings:
-      handlers:
-        python:
-          import:
-          - https://docs.python.org/3/objects.inv
-          selection:
-            docstring_style: google
-            docstring_options:
-              ignore_init_summary: yes
-          rendering:
-            show_submodules: no
-            docstring_section_style: list
-            members_order: alphabetical
-            show_category_heading: no
-            merge_init_into_class: yes
-      watch:
-        - deepts_forecasting
+#  - mkdocstrings:
+#      handlers:
+#        python:
+#          import:
+#          - https://docs.python.org/3/objects.inv
+#          selection:
+#            docstring_style: google
+#            docstring_options:
+#              ignore_init_summary: yes
+#          rendering:
+#            show_submodules: no
+#            docstring_section_style: list
+#            members_order: alphabetical
+#            show_category_heading: no
+#            merge_init_into_class: yes
+#      watch:
+#        - deepts_forecasting
 extra:
   social:
     - icon: fontawesome/brands/twitter
