@@ -9,7 +9,9 @@ nav:
   - usage: usage.md
   - modules: api.md
 #  - API: reference/
+  - examples: examples/getting_started.ipynb
   - contributing: contributing.md
+
   - authors: authors.md
   - history: history.md
 theme:
@@ -49,6 +51,10 @@ plugins:
   - include-markdown
   - search:
       lang: en
+  - mkdocs-jupyter:
+      ignore_h1_titles: True
+      execute: False
+      allow_errors: false
 #  - mkdocstrings:
 #      handlers:
 #        python:
