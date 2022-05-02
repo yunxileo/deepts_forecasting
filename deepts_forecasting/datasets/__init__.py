@@ -6,7 +6,7 @@ A few popular time series datasets
 """
 from abc import ABC
 
-from get_data import DatasetLoader, DatasetLoaderMetadata
+from deepts_forecasting.datasets.get_data import DatasetLoader, DatasetLoaderMetadata
 
 """
     Overall usage of this package:
@@ -14,7 +14,9 @@ from get_data import DatasetLoader, DatasetLoaderMetadata
     ts: TimeSeries = AirPassengersDataset.load()
 """
 
-_DEFAULT_PATH = "https://raw.githubusercontent.com/unit8co/darts/master/datasets"
+# _DEFAULT_PATH = "https://raw.githubusercontent.com/unit8co/darts/master/datasets"
+
+_DEFAULT_PATH = "https://raw.github.com/yunxileo/deepts_forecasting/main/deepts_forecasting/datasets/data"
 
 
 class AirPassengersDataset(DatasetLoader, ABC):
@@ -27,7 +29,7 @@ class AirPassengersDataset(DatasetLoader, ABC):
             metadata=DatasetLoaderMetadata(
                 "air_passengers.csv",
                 uri=_DEFAULT_PATH + "/AirPassengers.csv",
-                hash="167ffa96204a2b47339c21eea25baf32",
+                hash="925157518f55c59964c33ab46e38f6a5",
                 header_time="Month",
             )
         )
@@ -70,7 +72,7 @@ class SunspotsDataset(DatasetLoader):
             metadata=DatasetLoaderMetadata(
                 "sunspots.csv",
                 uri=_DEFAULT_PATH + "/monthly-sunspots.csv",
-                hash="4d27019c43d9c256d528f1bd6c5f40e0",
+                hash="d7312c8cc0b80ec511e008327270efe1",
                 header_time="Month",
                 format_time="%Y-%m",
             )
@@ -100,6 +102,29 @@ class EnergyDataset(DatasetLoader, ABC):
         )
 
 
+class StoreDataset(DatasetLoader, ABC):
+    """
+    Hourly energy dataset coming from [1]_.
+
+    Contains a time series with 28 hourly components between 2014-12-31 23:00:00 and 2018-12-31 22:00:00
+
+    References
+    ----------
+    .. [1] https://www.kaggle.com/nicholasjhana/energy-consumption-generation-prices-and-weather
+    """
+
+    def __init__(self):
+        super().__init__(
+            metadata=DatasetLoaderMetadata(
+                "store_demand.csv",
+                uri=_DEFAULT_PATH + "/Store_Demand/train.csv",
+                hash="9566c3963451137c2d7733f39fedb397",
+                header_time="date",
+                format_time="%Y-%m-%d",
+            )
+        )
+
+
 if __name__ == "__main__":
-    data = SunspotsDataset().load()
-    print(data.head())
+    data = AirPassengersDataset().load()
+    print(len(data))
