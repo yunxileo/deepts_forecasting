@@ -79,7 +79,7 @@ class Informer(BaseModelWithCovariates, ABC):
     ):
         self.embeddings = None
         self.save_hyperparameters()
-        super(Informer, self).__init__()
+        super(Informer, self).__init__(loss=loss, **kwargs)
         encoder_cont_size = len(self.hparams.x_reals)
         decoder_cont_size = len(
             self.hparams.time_varying_reals_decoder + self.hparams.static_reals

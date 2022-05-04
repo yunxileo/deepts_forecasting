@@ -1,0 +1,266 @@
+categorical_groups: {}
+cell_type: LSTM
+embedding_labels:
+  month: !!python/object/apply:numpy.core.multiarray._reconstruct
+    args:
+    - &id001 !!python/name:numpy.ndarray ''
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple
+      - 12
+    - !!python/object/apply:numpy.dtype
+      args:
+      - i8
+      - false
+      - true
+      state: !!python/tuple
+      - 3
+      - <
+      - null
+      - null
+      - null
+      - -1
+      - -1
+      - 0
+    - false
+    - !!binary |
+      AQAAAAAAAAACAAAAAAAAAAMAAAAAAAAABAAAAAAAAAAFAAAAAAAAAAYAAAAAAAAABwAAAAAAAAAI
+      AAAAAAAAAAkAAAAAAAAACgAAAAAAAAALAAAAAAAAAAwAAAAAAAAA
+embedding_paddings: []
+embedding_sizes:
+  month: !!python/tuple
+  - 12
+  - 6
+hidden_size: 50
+learning_rate: 0.001
+log_interval: -1
+log_val_interval: null
+logging_metrics: !!python/object:torch.nn.modules.container.ModuleList
+  _backward_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _buffers: !!python/object/apply:collections.OrderedDict
+  - []
+  _forward_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _forward_pre_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _is_full_backward_hook: null
+  _load_state_dict_pre_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _modules: !!python/object/apply:collections.OrderedDict
+  - []
+  _non_persistent_buffers_set: !!set {}
+  _parameters: !!python/object/apply:collections.OrderedDict
+  - []
+  _state_dict_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  training: true
+loss: !!python/object:torch.nn.modules.loss.L1Loss
+  _backward_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _buffers: !!python/object/apply:collections.OrderedDict
+  - []
+  _forward_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _forward_pre_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _is_full_backward_hook: null
+  _load_state_dict_pre_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  _modules: !!python/object/apply:collections.OrderedDict
+  - []
+  _non_persistent_buffers_set: !!set {}
+  _parameters: !!python/object/apply:collections.OrderedDict
+  - []
+  _state_dict_hooks: !!python/object/apply:collections.OrderedDict
+  - []
+  reduction: mean
+  training: true
+max_encoder_length: 13
+max_prediction_length: 12
+monotone_constaints: {}
+output_size: 1
+output_transformer: !!python/object:deepts_forecasting.utils.data.encoders.TorchNormalizer
+  center: true
+  center_: !!python/object:pandas.core.series.Series
+    _flags:
+      allows_duplicate_labels: true
+    _metadata: &id006
+    - name
+    _mgr: !!python/object/new:pandas.core.internals.managers.SingleBlockManager
+      state: !!python/tuple
+      - &id004
+        - !!python/object/apply:pandas.core.indexes.base._new_Index
+          - &id002 !!python/name:pandas.core.indexes.base.Index ''
+          - data: !!python/object/apply:numpy.core.multiarray._reconstruct
+              args:
+              - *id001
+              - !!python/tuple
+                - 0
+              - !!binary |
+                Yg==
+              state: !!python/tuple
+              - 1
+              - !!python/tuple
+                - 1
+              - &id003 !!python/object/apply:numpy.dtype
+                args:
+                - O8
+                - false
+                - true
+                state: !!python/tuple
+                - 3
+                - '|'
+                - null
+                - null
+                - null
+                - -1
+                - -1
+                - 63
+              - false
+              - - Passengers
+            name: null
+      - - &id005 !!python/object/apply:numpy.core.multiarray._reconstruct
+          args:
+          - *id001
+          - !!python/tuple
+            - 0
+          - !!binary |
+            Yg==
+          state: !!python/tuple
+          - 1
+          - !!python/tuple
+            - 1
+          - &id007 !!python/object/apply:numpy.dtype
+            args:
+            - f8
+            - false
+            - true
+            state: !!python/tuple
+            - 3
+            - <
+            - null
+            - null
+            - null
+            - -1
+            - -1
+            - 0
+          - false
+          - !!binary |
+            SZIkSZKkbkA=
+      - - !!python/object/apply:pandas.core.indexes.base._new_Index
+          - *id002
+          - data: !!python/object/apply:numpy.core.multiarray._reconstruct
+              args:
+              - *id001
+              - !!python/tuple
+                - 0
+              - !!binary |
+                Yg==
+              state: !!python/tuple
+              - 1
+              - !!python/tuple
+                - 1
+              - *id003
+              - false
+              - - Passengers
+            name: null
+      - 0.14.1:
+          axes: *id004
+          blocks:
+          - mgr_locs: !!python/object/apply:builtins.slice
+            - 0
+            - 1
+            - 1
+            values: *id005
+    _typ: series
+    attrs: {}
+    name: null
+  eps: 1.0e-08
+  method: standard
+  scale_: !!python/object:pandas.core.series.Series
+    _flags:
+      allows_duplicate_labels: true
+    _metadata: *id006
+    _mgr: !!python/object/new:pandas.core.internals.managers.SingleBlockManager
+      state: !!python/tuple
+      - &id008
+        - !!python/object/apply:pandas.core.indexes.base._new_Index
+          - *id002
+          - data: !!python/object/apply:numpy.core.multiarray._reconstruct
+              args:
+              - *id001
+              - !!python/tuple
+                - 0
+              - !!binary |
+                Yg==
+              state: !!python/tuple
+              - 1
+              - !!python/tuple
+                - 1
+              - *id003
+              - false
+              - - Passengers
+            name: null
+      - - &id009 !!python/object/apply:numpy.core.multiarray._reconstruct
+          args:
+          - *id001
+          - !!python/tuple
+            - 0
+          - !!binary |
+            Yg==
+          state: !!python/tuple
+          - 1
+          - !!python/tuple
+            - 1
+          - *id007
+          - false
+          - !!binary |
+            YmQpQYykV0A=
+      - - !!python/object/apply:pandas.core.indexes.base._new_Index
+          - *id002
+          - data: !!python/object/apply:numpy.core.multiarray._reconstruct
+              args:
+              - *id001
+              - !!python/tuple
+                - 0
+              - !!binary |
+                Yg==
+              state: !!python/tuple
+              - 1
+              - !!python/tuple
+                - 1
+              - *id003
+              - false
+              - - Passengers
+            name: null
+      - 0.14.1:
+          axes: *id008
+          blocks:
+          - mgr_locs: !!python/object/apply:builtins.slice
+            - 0
+            - 1
+            - 1
+            values: *id009
+    _typ: series
+    attrs: {}
+    name: null
+  transformation: null
+rnn_layers: 3
+static_categoricals: []
+static_reals: []
+time_varying_categoricals_decoder:
+- month
+time_varying_categoricals_encoder:
+- month
+time_varying_reals_decoder: []
+time_varying_reals_encoder:
+- Passengers
+x_categoricals:
+- month
+x_reals:
+- Passengers
