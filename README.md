@@ -18,7 +18,8 @@
 </p>
 
 
-**Deepts_forecasting** is a Easy-to-use package for time series forecasting with deep Learning models. It contains a variety of models, from classics such as ARIMA to deep neural networks.
+**Deepts_forecasting** is a Easy-to-use package for time series forecasting with deep Learning models.
+It contains a variety of models, from classics such as seq2seq to more complex deep neural networks.
 The models can all be used in the same way, using `fit()` and `predict()` functions,
 
 
@@ -26,7 +27,7 @@ The models can all be used in the same way, using `fit()` and `predict()` functi
 
 ##  Documentation
 
-* <https://deepts-forecasting.readthedocs.io>
+* <https://yunxileo.github.io/deepts_forecasting/>
 
 
 ## Features

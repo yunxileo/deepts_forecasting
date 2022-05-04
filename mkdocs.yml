@@ -9,9 +9,15 @@ nav:
   - usage: usage.md
   - modules: api.md
 #  - API: reference/
-  - examples: examples/getting_started.ipynb
+  - examples:
+    - seq2seq model: examples/getting_started.ipynb
+    - deepar mdel: examples/deepar.ipynb
+    - nbeats model: examples/nbeats.ipynb
+    - mqrnn model: examples/mqrnn.ipynb
+    - tcn model: examples/tcn.ipynb
+    - tft model: examples/tft.ipynb
+    - transformer model: examples/transformer.ipynb
   - contributing: contributing.md
-
   - authors: authors.md
   - history: history.md
 theme:

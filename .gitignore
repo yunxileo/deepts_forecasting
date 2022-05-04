@@ -65,7 +65,7 @@ instance/
 # Sphinx documentation
 docs/_build/
 docs/reference/
-docs/examples/lightning_logs
+docs/examples/lightning_logs/
 
 # PyBuilder
 target/
