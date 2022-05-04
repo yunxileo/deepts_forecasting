@@ -15,7 +15,7 @@
     
     
       
-        <title>examples - DeepTS_Forecasting</title>
+        <title>seq2seq model - DeepTS_Forecasting</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              examples
+              seq2seq model
             
           </span>
         </div>
@@ -218,11 +218,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="./" class="md-tabs__link md-tabs__link--active">
-      examples
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        examples
+      </a>
+    </li>
+  
 
       
         
@@ -380,6 +384,50 @@
     
   
   
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
@@ -389,12 +437,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          examples
+          seq2seq model
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        examples
+        seq2seq model
       </a>
       
         
@@ -451,6 +499,97 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deepar/" class="md-nav__link">
+        deepar mdel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nbeats/" class="md-nav__link">
+        nbeats model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mqrnn/" class="md-nav__link">
+        mqrnn model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tcn/" class="md-nav__link">
+        tcn model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tft/" class="md-nav__link">
+        tft model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformer/" class="md-nav__link">
+        transformer model
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1667,7 +1806,7 @@ Licensed under the Apache License, Version 2.0.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1682,9 +1821,30 @@ Licensed under the Apache License, Version 2.0.
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">deepts_forecasting</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">deepts_forecasting.utils.data</span> <span class="kn">import</span> <span class="n">TimeSeriesDataSet</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">deepts_forecasting.models.seq2seq</span> <span class="kn">import</span> <span class="n">Seq2SeqNetwork</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">LearningRateMonitor</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.loggers</span> <span class="kn">import</span> <span class="n">TensorBoardLogger</span>
+<span class="kn">from</span> <span class="nn">deepts_forecasting.utils.data.encoders</span> <span class="kn">import</span> <span class="n">TorchNormalizer</span>
+<span class="kn">from</span> <span class="nn">deepts_forecasting.datasets</span> <span class="kn">import</span> <span class="n">AirPassengersDataset</span>
 </pre></div>
-<div id="cell-2" class="clipboard-copy-txt">import deepts_forecasting</div>
+<div id="cell-2" class="clipboard-copy-txt">import numpy as np
+import pandas as pd
+import torch
+from deepts_forecasting.utils.data import TimeSeriesDataSet
+from torch.utils.data import DataLoader
+from deepts_forecasting.models.seq2seq import Seq2SeqNetwork
+import pytorch_lightning as pl
+from pytorch_lightning.callbacks import EarlyStopping, LearningRateMonitor
+from pytorch_lightning.loggers import TensorBoardLogger
+from deepts_forecasting.utils.data.encoders import TorchNormalizer
+from deepts_forecasting.datasets import AirPassengersDataset
+</div>
     
         </div>
     </div>
@@ -1706,13 +1866,9 @@ Licensed under the Apache License, Version 2.0.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_30120/2020785169.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">import</span> deepts_forecasting
-
-<span class="ansi-red-intense-fg ansi-bold">ModuleNotFoundError</span>: No module named &#39;deepts_forecasting&#39;</pre>
+<pre>D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\tqdm\auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre>
 </div>
 </div>
 
@@ -1732,6 +1888,150 @@ Licensed under the Apache License, Version 2.0.
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-3">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">AirPassengersDataset</span><span class="p">()</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;time_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Passengers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Passengers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+<div id="cell-3" class="clipboard-copy-txt">data = AirPassengersDataset().load()
+data['year'] = data['Month'].dt.year
+data['month'] = data['Month'].dt.month
+data['group'] = '0'
+data['time_idx'] = np.arange(len(data))
+data['Passengers'] = data['Passengers'].astype(float)
+data['month'] = data['month'].astype('str')
+data.head()</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Month</th>
+      <th>Passengers</th>
+      <th>year</th>
+      <th>month</th>
+      <th>group</th>
+      <th>time_idx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1949-01-01</td>
+      <td>112.0</td>
+      <td>1949</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1949-02-01</td>
+      <td>118.0</td>
+      <td>1949</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1949-03-01</td>
+      <td>132.0</td>
+      <td>1949</td>
+      <td>3</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1949-04-01</td>
+      <td>129.0</td>
+      <td>1949</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1949-05-01</td>
+      <td>121.0</td>
+      <td>1949</td>
+      <td>5</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -1742,6 +2042,99 @@ Licensed under the Apache License, Version 2.0.
 <h3 id="split-traintest-sets">Split train/test sets<a class="anchor-link" href="#split-traintest-sets">&#182;</a></h3>
 </div>
 </div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-4">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">max_encoder_length</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">max_prediction_length</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="n">training_cutoff</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">max_encoder_length</span> <span class="o">-</span> <span class="n">max_prediction_length</span>
+
+<span class="n">training</span> <span class="o">=</span> <span class="n">TimeSeriesDataSet</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span> <span class="o">&lt;=</span> <span class="n">training_cutoff</span><span class="p">],</span>
+    <span class="n">max_encoder_length</span><span class="o">=</span> <span class="n">max_encoder_length</span><span class="p">,</span>
+    <span class="n">min_encoder_length</span><span class="o">=</span><span class="n">max_encoder_length</span><span class="p">,</span>
+    <span class="n">max_prediction_length</span><span class="o">=</span><span class="n">max_prediction_length</span><span class="p">,</span>
+    <span class="n">min_prediction_length</span><span class="o">=</span><span class="n">max_prediction_length</span><span class="p">,</span>
+    <span class="n">time_idx</span><span class="o">=</span><span class="s2">&quot;time_idx&quot;</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="s2">&quot;Passengers&quot;</span><span class="p">,</span>
+    <span class="n">group_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">],</span>
+    <span class="n">static_categoricals</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">static_reals</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">time_varying_known_categoricals</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">],</span>
+    <span class="n">time_varying_known_reals</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">time_varying_unknown_reals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Passengers&quot;</span><span class="p">],</span>
+    <span class="n">time_varying_unknown_categoricals</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">target_normalizer</span><span class="o">=</span><span class="n">TorchNormalizer</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+                                      <span class="n">transformation</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+    <span class="p">)</span>
+
+<span class="n">training</span><span class="o">.</span><span class="n">get_parameters</span><span class="p">()</span>
+<span class="n">validation</span> <span class="o">=</span> <span class="n">TimeSeriesDataSet</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">training</span><span class="p">,</span>
+                                            <span class="n">data</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span> <span class="o">&gt;</span> <span class="n">training_cutoff</span><span class="p">])</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">val_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">validation</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+<div id="cell-4" class="clipboard-copy-txt">max_encoder_length = 14
+max_prediction_length = 12
+
+training_cutoff = data["time_idx"].max() - max_encoder_length - max_prediction_length
+
+training = TimeSeriesDataSet(
+    data[lambda x: x.time_idx <= training_cutoff],
+    max_encoder_length= max_encoder_length,
+    min_encoder_length=max_encoder_length,
+    max_prediction_length=max_prediction_length,
+    min_prediction_length=max_prediction_length,
+    time_idx="time_idx",
+    target="Passengers",
+    group_ids=["group"],
+    static_categoricals=[],
+    static_reals=[],
+    time_varying_known_categoricals=['month'],
+    time_varying_known_reals=[],
+    time_varying_unknown_reals=["Passengers"],
+    time_varying_unknown_categoricals=[],
+    target_normalizer=TorchNormalizer(method="standard",
+                                      transformation=None),
+    )
+
+training.get_parameters()
+validation = TimeSeriesDataSet.from_dataset(training,
+                                            data[lambda x: x.time_idx > training_cutoff])
+
+batch_size = 16
+train_dataloader = DataLoader(training, batch_size=batch_size, shuffle=False, drop_last=False)
+val_dataloader = DataLoader(validation, batch_size=batch_size, shuffle=False, drop_last=False)
+</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
@@ -1754,6 +2147,205 @@ Licensed under the Apache License, Version 2.0.
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-5">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="c1"># create PyTorch Lighning Trainer with early stopping</span>
+<span class="n">early_stop_callback</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+                                    <span class="n">patience</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
+<span class="n">lr_logger</span> <span class="o">=</span> <span class="n">LearningRateMonitor</span><span class="p">()</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># run on CPU, if on multiple GPUs, use accelerator=&quot;ddp&quot;</span>
+    <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">limit_train_batches</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>  <span class="c1"># 30 batches per epoch</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">lr_logger</span><span class="p">,</span> <span class="n">early_stop_callback</span><span class="p">],</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">TensorBoardLogger</span><span class="p">(</span><span class="s2">&quot;lightning_logs&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Seq2SeqNetwork</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">training</span><span class="p">,</span>
+                                    <span class="n">hidden_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                    <span class="n">rnn_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summarize</span>
+</pre></div>
+<div id="cell-5" class="clipboard-copy-txt">pl.seed_everything(123)
+# create PyTorch Lighning Trainer with early stopping
+early_stop_callback = EarlyStopping(monitor="val_loss", min_delta=1e-4,
+                                    patience=60, verbose=False, mode="min")
+lr_logger = LearningRateMonitor()
+
+trainer = pl.Trainer(
+    max_epochs=300,
+    gpus=0,  # run on CPU, if on multiple GPUs, use accelerator="ddp"
+    gradient_clip_val=0.1,
+    limit_train_batches=30,  # 30 batches per epoch
+    callbacks=[lr_logger, early_stop_callback],
+    logger=TensorBoardLogger("lightning_logs")
+)
+
+model = Seq2SeqNetwork.from_dataset(training,
+                                    hidden_size=50,
+                                    rnn_layers=3)
+model.summarize</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>Global seed set to 123
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;bound method LightningModule.summarize of Seq2SeqNetwork(
+  (loss): L1Loss()
+  (logging_metrics): ModuleList()
+  (dense_layer): Linear(in_features=50, out_features=1, bias=True)
+  (encode_rnn): LSTM(7, 50, num_layers=3, batch_first=True)
+  (decode_rnn): LSTM(6, 50, num_layers=3, batch_first=True)
+  (embeddings): ModuleDict(
+    (month): Embedding(12, 6)
+  )
+)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-6">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">hparams</span>
+</pre></div>
+<div id="cell-6" class="clipboard-copy-txt">model.hparams</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#34;categorical_groups&#34;:                {}
+&#34;cell_type&#34;:                         LSTM
+&#34;embedding_labels&#34;:                  {&#39;month&#39;: array([&#39;1&#39;, &#39;10&#39;, &#39;11&#39;, &#39;12&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;],
+      dtype=object)}
+&#34;embedding_paddings&#34;:                []
+&#34;embedding_sizes&#34;:                   {&#39;month&#39;: [12, 6]}
+&#34;hidden_size&#34;:                       50
+&#34;learning_rate&#34;:                     0.001
+&#34;log_interval&#34;:                      -1
+&#34;log_val_interval&#34;:                  None
+&#34;logging_metrics&#34;:                   ModuleList()
+&#34;loss&#34;:                              L1Loss()
+&#34;max_encoder_length&#34;:                14
+&#34;max_prediction_length&#34;:             12
+&#34;monotone_constaints&#34;:               {}
+&#34;output_size&#34;:                       1
+&#34;output_transformer&#34;:                TorchNormalizer()
+&#34;rnn_layers&#34;:                        3
+&#34;static_categoricals&#34;:               []
+&#34;static_reals&#34;:                      []
+&#34;time_varying_categoricals_decoder&#34;: [&#39;month&#39;]
+&#34;time_varying_categoricals_encoder&#34;: [&#39;month&#39;]
+&#34;time_varying_reals_decoder&#34;:        []
+&#34;time_varying_reals_encoder&#34;:        [&#39;Passengers&#39;]
+&#34;x_categoricals&#34;:                    [&#39;month&#39;]
+&#34;x_reals&#34;:                           [&#39;Passengers&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -1764,6 +2356,583 @@ Licensed under the Apache License, Version 2.0.
 <h3 id="train-model-with-early-stopping">Train model with early stopping<a class="anchor-link" href="#train-model-with-early-stopping">&#182;</a></h3>
 </div>
 </div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-7">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">train_dataloader</span><span class="o">=</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">val_dataloaders</span><span class="o">=</span><span class="n">val_dataloader</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># (given that we use early stopping, this is not necessarily the last epoch)</span>
+<span class="n">best_model_path</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">Seq2SeqNetwork</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span>
+
+<span class="c1"># calcualte mean absolute error on validation set</span>
+<span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">transform_output</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">target_scale</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;target_scale&#39;</span><span class="p">])</span>
+                     <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)])</span>
+<span class="n">predictions</span><span class="p">,</span> <span class="n">x_index</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="p">(</span><span class="n">actuals</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1"># print(&#39;predictions shape is:&#39;, predictions.shape)</span>
+<span class="c1"># print(&#39;actuals shape is:&#39;, actuals.shape)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">actuals</span><span class="p">,</span> <span class="n">predictions</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE is:&#39;</span><span class="p">,</span> <span class="n">mae</span><span class="p">)</span>
+</pre></div>
+<div id="cell-7" class="clipboard-copy-txt">trainer.fit(
+    model, train_dataloader=train_dataloader, val_dataloaders=val_dataloader,
+)
+
+# (given that we use early stopping, this is not necessarily the last epoch)
+best_model_path = trainer.checkpoint_callback.best_model_path
+best_model = Seq2SeqNetwork.load_from_checkpoint(best_model_path)
+
+# calcualte mean absolute error on validation set
+actuals = torch.cat([model.transform_output(prediction=y, target_scale=x['target_scale'])
+                     for x, y in iter(val_dataloader)])
+predictions, x_index = best_model.predict(val_dataloader)
+mae = (actuals - predictions).abs().mean()
+# print('predictions shape is:', predictions.shape)
+# print('actuals shape is:', actuals.shape)
+print(torch.cat([actuals, predictions]))
+print('MAE is:', mae)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:735: LightningDeprecationWarning: `trainer.fit(train_dataloader)` is deprecated in v1.4 and will be removed in v1.6. Use `trainer.fit(train_dataloaders)` instead. HINT: added &#39;s&#39;
+  rank_zero_deprecation(
+
+  | Name            | Type       | Params
+-----------------------------------------------
+0 | loss            | L1Loss     | 0     
+1 | logging_metrics | ModuleList | 0     
+2 | dense_layer     | Linear     | 51    
+3 | encode_rnn      | LSTM       | 52.6 K
+4 | decode_rnn      | LSTM       | 52.4 K
+5 | embeddings      | ModuleDict | 72    
+-----------------------------------------------
+105 K     Trainable params
+0         Non-trainable params
+105 K     Total params
+0.420     Total estimated model params size (MB)
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>                                                                             </pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\data_loading.py:132: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 16 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Global seed set to 123
+D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\data_loading.py:132: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 16 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\data_loading.py:432: UserWarning: The number of training samples (6) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Epoch 0:  86%|█████████▍ | 6/7 [00:00&lt;00:00, 26.90it/s, loss=0.742, v_num=13]
+Validating: 0it [00:00, ?it/s]
+Epoch 0: 100%|█| 7/7 [00:00&lt;00:00, 29.66it/s, loss=0.742, v_num=13, val_loss=
+Epoch 1:  86%|▊| 6/7 [00:00&lt;00:00, 20.00it/s, loss=0.734, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 1: 100%|█| 7/7 [00:00&lt;00:00, 22.08it/s, loss=0.734, v_num=13, val_loss=
+Epoch 2:  86%|▊| 6/7 [00:00&lt;00:00, 11.89it/s, loss=0.731, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 2: 100%|█| 7/7 [00:00&lt;00:00, 13.22it/s, loss=0.731, v_num=13, val_loss=
+Epoch 3:  86%|▊| 6/7 [00:00&lt;00:00, 13.23it/s, loss=0.77, v_num=13, val_loss=2
+Validating: 0it [00:00, ?it/s]
+Epoch 3: 100%|█| 7/7 [00:00&lt;00:00, 14.69it/s, loss=0.77, v_num=13, val_loss=2
+Epoch 4:  86%|▊| 6/7 [00:00&lt;00:00, 12.19it/s, loss=0.768, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 4: 100%|█| 7/7 [00:00&lt;00:00, 13.64it/s, loss=0.768, v_num=13, val_loss=
+Epoch 5:  86%|▊| 6/7 [00:00&lt;00:00, 13.59it/s, loss=0.765, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 5: 100%|█| 7/7 [00:00&lt;00:00, 15.05it/s, loss=0.765, v_num=13, val_loss=
+Epoch 6:  86%|▊| 6/7 [00:00&lt;00:00, 13.51it/s, loss=0.76, v_num=13, val_loss=2
+Validating: 0it [00:00, ?it/s]
+Epoch 6: 100%|█| 7/7 [00:00&lt;00:00, 14.95it/s, loss=0.76, v_num=13, val_loss=2
+Epoch 7:  86%|▊| 6/7 [00:00&lt;00:00, 14.10it/s, loss=0.746, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 7: 100%|█| 7/7 [00:00&lt;00:00, 15.55it/s, loss=0.746, v_num=13, val_loss=
+Epoch 8:  86%|▊| 6/7 [00:00&lt;00:00, 14.61it/s, loss=0.711, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 8: 100%|█| 7/7 [00:00&lt;00:00, 16.13it/s, loss=0.711, v_num=13, val_loss=
+Epoch 9:  86%|▊| 6/7 [00:00&lt;00:00, 13.04it/s, loss=0.646, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 9: 100%|█| 7/7 [00:00&lt;00:00, 14.33it/s, loss=0.646, v_num=13, val_loss=
+Epoch 10:  86%|▊| 6/7 [00:00&lt;00:00, 13.73it/s, loss=0.564, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 10: 100%|█| 7/7 [00:00&lt;00:00, 15.25it/s, loss=0.564, v_num=13, val_loss
+Epoch 11:  86%|▊| 6/7 [00:00&lt;00:00, 14.87it/s, loss=0.493, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 11: 100%|█| 7/7 [00:00&lt;00:00, 16.74it/s, loss=0.493, v_num=13, val_loss
+Epoch 12:  86%|▊| 6/7 [00:00&lt;00:00, 16.59it/s, loss=0.433, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 12: 100%|█| 7/7 [00:00&lt;00:00, 18.49it/s, loss=0.433, v_num=13, val_loss
+Epoch 13:  86%|▊| 6/7 [00:00&lt;00:00, 16.46it/s, loss=0.378, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 13: 100%|█| 7/7 [00:00&lt;00:00, 18.42it/s, loss=0.378, v_num=13, val_loss
+Epoch 14:  86%|▊| 6/7 [00:00&lt;00:00, 20.61it/s, loss=0.32, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 14: 100%|█| 7/7 [00:00&lt;00:00, 22.87it/s, loss=0.32, v_num=13, val_loss=
+Epoch 15:  86%|▊| 6/7 [00:00&lt;00:00, 18.18it/s, loss=0.3, v_num=13, val_loss=1
+Validating: 0it [00:00, ?it/s]
+Epoch 15: 100%|█| 7/7 [00:00&lt;00:00, 20.23it/s, loss=0.3, v_num=13, val_loss=0
+Epoch 16:  86%|▊| 6/7 [00:00&lt;00:00, 17.62it/s, loss=0.289, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 16: 100%|█| 7/7 [00:00&lt;00:00, 19.31it/s, loss=0.289, v_num=13, val_loss
+Epoch 17:  86%|▊| 6/7 [00:00&lt;00:00, 19.90it/s, loss=0.277, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 17: 100%|█| 7/7 [00:00&lt;00:00, 22.04it/s, loss=0.277, v_num=13, val_loss
+Epoch 18:  86%|▊| 6/7 [00:00&lt;00:00, 17.12it/s, loss=0.258, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 18: 100%|█| 7/7 [00:00&lt;00:00, 19.04it/s, loss=0.258, v_num=13, val_loss
+Epoch 19:  86%|▊| 6/7 [00:00&lt;00:00, 19.41it/s, loss=0.245, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 19: 100%|█| 7/7 [00:00&lt;00:00, 21.60it/s, loss=0.245, v_num=13, val_loss
+Epoch 20:  86%|▊| 6/7 [00:00&lt;00:00, 20.47it/s, loss=0.239, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 20: 100%|█| 7/7 [00:00&lt;00:00, 22.76it/s, loss=0.239, v_num=13, val_loss
+Epoch 21:  86%|▊| 6/7 [00:00&lt;00:00, 20.69it/s, loss=0.228, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 21: 100%|█| 7/7 [00:00&lt;00:00, 22.87it/s, loss=0.228, v_num=13, val_loss
+Epoch 22:  86%|▊| 6/7 [00:00&lt;00:00, 20.20it/s, loss=0.246, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 22: 100%|█| 7/7 [00:00&lt;00:00, 22.40it/s, loss=0.246, v_num=13, val_loss
+Epoch 23:  86%|▊| 6/7 [00:00&lt;00:00, 20.65it/s, loss=0.238, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 23: 100%|█| 7/7 [00:00&lt;00:00, 22.61it/s, loss=0.238, v_num=13, val_loss
+Epoch 24:  86%|▊| 6/7 [00:00&lt;00:00, 17.67it/s, loss=0.239, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 24: 100%|█| 7/7 [00:00&lt;00:00, 19.69it/s, loss=0.239, v_num=13, val_loss
+Epoch 25:  86%|▊| 6/7 [00:00&lt;00:00, 19.60it/s, loss=0.225, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 25: 100%|█| 7/7 [00:00&lt;00:00, 21.47it/s, loss=0.225, v_num=13, val_loss
+Epoch 26:  86%|▊| 6/7 [00:00&lt;00:00, 17.36it/s, loss=0.22, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 26: 100%|█| 7/7 [00:00&lt;00:00, 18.94it/s, loss=0.22, v_num=13, val_loss=
+Epoch 27:  86%|▊| 6/7 [00:00&lt;00:00, 17.26it/s, loss=0.216, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 27: 100%|█| 7/7 [00:00&lt;00:00, 19.04it/s, loss=0.216, v_num=13, val_loss
+Epoch 28:  86%|▊| 6/7 [00:00&lt;00:00, 17.49it/s, loss=0.218, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 28: 100%|█| 7/7 [00:00&lt;00:00, 19.55it/s, loss=0.218, v_num=13, val_loss
+Epoch 29:  86%|▊| 6/7 [00:00&lt;00:00, 17.91it/s, loss=0.221, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 29: 100%|█| 7/7 [00:00&lt;00:00, 19.77it/s, loss=0.221, v_num=13, val_loss
+Epoch 30:  86%|▊| 6/7 [00:00&lt;00:00, 20.69it/s, loss=0.209, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 30: 100%|█| 7/7 [00:00&lt;00:00, 23.06it/s, loss=0.209, v_num=13, val_loss
+Epoch 31:  86%|▊| 6/7 [00:00&lt;00:00, 20.30it/s, loss=0.208, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 31: 100%|█| 7/7 [00:00&lt;00:00, 22.58it/s, loss=0.208, v_num=13, val_loss
+Epoch 32:  86%|▊| 6/7 [00:00&lt;00:00, 20.44it/s, loss=0.195, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 32: 100%|█| 7/7 [00:00&lt;00:00, 22.69it/s, loss=0.195, v_num=13, val_loss
+Epoch 33:  86%|▊| 6/7 [00:00&lt;00:00, 19.83it/s, loss=0.191, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 33: 100%|█| 7/7 [00:00&lt;00:00, 22.01it/s, loss=0.191, v_num=13, val_loss
+Epoch 34:  86%|▊| 6/7 [00:00&lt;00:00, 20.90it/s, loss=0.187, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 34: 100%|█| 7/7 [00:00&lt;00:00, 23.10it/s, loss=0.187, v_num=13, val_loss
+Epoch 35:  86%|▊| 6/7 [00:00&lt;00:00, 19.41it/s, loss=0.175, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 35: 100%|█| 7/7 [00:00&lt;00:00, 21.63it/s, loss=0.175, v_num=13, val_loss
+Epoch 36:  86%|▊| 6/7 [00:00&lt;00:00, 21.05it/s, loss=0.16, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 36: 100%|█| 7/7 [00:00&lt;00:00, 23.37it/s, loss=0.16, v_num=13, val_loss=
+Epoch 37:  86%|▊| 6/7 [00:00&lt;00:00, 18.72it/s, loss=0.146, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 37: 100%|█| 7/7 [00:00&lt;00:00, 20.83it/s, loss=0.146, v_num=13, val_loss
+Epoch 38:  86%|▊| 6/7 [00:00&lt;00:00, 18.84it/s, loss=0.14, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 38: 100%|█| 7/7 [00:00&lt;00:00, 20.92it/s, loss=0.14, v_num=13, val_loss=
+Epoch 39:  86%|▊| 6/7 [00:00&lt;00:00, 19.67it/s, loss=0.151, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 39: 100%|█| 7/7 [00:00&lt;00:00, 21.74it/s, loss=0.151, v_num=13, val_loss
+Epoch 40:  86%|▊| 6/7 [00:00&lt;00:00, 18.89it/s, loss=0.151, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 40: 100%|█| 7/7 [00:00&lt;00:00, 21.05it/s, loss=0.151, v_num=13, val_loss
+Epoch 41:  86%|▊| 6/7 [00:00&lt;00:00, 17.91it/s, loss=0.147, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 41: 100%|█| 7/7 [00:00&lt;00:00, 19.91it/s, loss=0.147, v_num=13, val_loss
+Epoch 42:  86%|▊| 6/7 [00:00&lt;00:00, 20.13it/s, loss=0.159, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 42: 100%|█| 7/7 [00:00&lt;00:00, 22.32it/s, loss=0.159, v_num=13, val_loss
+Epoch 43:  86%|▊| 6/7 [00:00&lt;00:00, 16.99it/s, loss=0.145, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 43: 100%|█| 7/7 [00:00&lt;00:00, 18.54it/s, loss=0.145, v_num=13, val_loss
+Epoch 44:  86%|▊| 6/7 [00:00&lt;00:00, 18.15it/s, loss=0.147, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 44: 100%|█| 7/7 [00:00&lt;00:00, 20.23it/s, loss=0.147, v_num=13, val_loss
+Epoch 45:  86%|▊| 6/7 [00:00&lt;00:00, 19.32it/s, loss=0.142, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 45: 100%|█| 7/7 [00:00&lt;00:00, 21.31it/s, loss=0.142, v_num=13, val_loss
+Epoch 46:  86%|▊| 6/7 [00:00&lt;00:00, 19.32it/s, loss=0.137, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 46: 100%|█| 7/7 [00:00&lt;00:00, 21.37it/s, loss=0.137, v_num=13, val_loss
+Epoch 47:  86%|▊| 6/7 [00:00&lt;00:00, 19.57it/s, loss=0.159, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 47: 100%|█| 7/7 [00:00&lt;00:00, 21.84it/s, loss=0.159, v_num=13, val_loss
+Epoch 48:  86%|▊| 6/7 [00:00&lt;00:00, 20.27it/s, loss=0.159, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 48: 100%|█| 7/7 [00:00&lt;00:00, 22.58it/s, loss=0.159, v_num=13, val_loss
+Epoch 49:  86%|▊| 6/7 [00:00&lt;00:00, 18.37it/s, loss=0.155, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 49: 100%|█| 7/7 [00:00&lt;00:00, 20.40it/s, loss=0.155, v_num=13, val_loss
+Epoch 50:  86%|▊| 6/7 [00:00&lt;00:00, 17.46it/s, loss=0.147, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 50: 100%|█| 7/7 [00:00&lt;00:00, 19.39it/s, loss=0.147, v_num=13, val_loss
+Epoch 51:  86%|▊| 6/7 [00:00&lt;00:00, 19.70it/s, loss=0.137, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 51: 100%|█| 7/7 [00:00&lt;00:00, 21.94it/s, loss=0.137, v_num=13, val_loss
+Epoch 52:  86%|▊| 6/7 [00:00&lt;00:00, 18.43it/s, loss=0.139, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 52: 100%|█| 7/7 [00:00&lt;00:00, 20.43it/s, loss=0.139, v_num=13, val_loss
+Epoch 53:  86%|▊| 6/7 [00:00&lt;00:00, 17.77it/s, loss=0.146, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 53: 100%|█| 7/7 [00:00&lt;00:00, 19.88it/s, loss=0.146, v_num=13, val_loss
+Epoch 54:  86%|▊| 6/7 [00:00&lt;00:00, 20.79it/s, loss=0.145, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 54: 100%|█| 7/7 [00:00&lt;00:00, 22.87it/s, loss=0.145, v_num=13, val_loss
+Epoch 55:  86%|▊| 6/7 [00:00&lt;00:00, 16.48it/s, loss=0.15, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 55: 100%|█| 7/7 [00:00&lt;00:00, 18.04it/s, loss=0.15, v_num=13, val_loss=
+Epoch 56:  86%|▊| 6/7 [00:00&lt;00:00, 17.34it/s, loss=0.144, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 56: 100%|█| 7/7 [00:00&lt;00:00, 19.41it/s, loss=0.144, v_num=13, val_loss
+Epoch 57:  86%|▊| 6/7 [00:00&lt;00:00, 14.85it/s, loss=0.138, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 57: 100%|█| 7/7 [00:00&lt;00:00, 16.60it/s, loss=0.138, v_num=13, val_loss
+Epoch 58:  86%|▊| 6/7 [00:00&lt;00:00, 15.40it/s, loss=0.137, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 58: 100%|█| 7/7 [00:00&lt;00:00, 17.11it/s, loss=0.137, v_num=13, val_loss
+Epoch 59:  86%|▊| 6/7 [00:00&lt;00:00, 15.87it/s, loss=0.123, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 59: 100%|█| 7/7 [00:00&lt;00:00, 17.50it/s, loss=0.123, v_num=13, val_loss
+Epoch 60:  86%|▊| 6/7 [00:00&lt;00:00, 19.26it/s, loss=0.116, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 60: 100%|█| 7/7 [00:00&lt;00:00, 21.44it/s, loss=0.116, v_num=13, val_loss
+Epoch 61:  86%|▊| 6/7 [00:00&lt;00:00, 19.48it/s, loss=0.131, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 61: 100%|█| 7/7 [00:00&lt;00:00, 21.67it/s, loss=0.131, v_num=13, val_loss
+Epoch 62:  86%|▊| 6/7 [00:00&lt;00:00, 20.13it/s, loss=0.139, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 62: 100%|█| 7/7 [00:00&lt;00:00, 22.29it/s, loss=0.139, v_num=13, val_loss
+Epoch 63:  86%|▊| 6/7 [00:00&lt;00:00, 21.27it/s, loss=0.137, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 63: 100%|█| 7/7 [00:00&lt;00:00, 23.64it/s, loss=0.137, v_num=13, val_loss
+Epoch 64:  86%|▊| 6/7 [00:00&lt;00:00, 20.54it/s, loss=0.126, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 64: 100%|█| 7/7 [00:00&lt;00:00, 22.83it/s, loss=0.126, v_num=13, val_loss
+Epoch 65:  86%|▊| 6/7 [00:00&lt;00:00, 20.23it/s, loss=0.114, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 65: 100%|█| 7/7 [00:00&lt;00:00, 22.43it/s, loss=0.114, v_num=13, val_loss
+Epoch 66:  86%|▊| 6/7 [00:00&lt;00:00, 20.34it/s, loss=0.11, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 66: 100%|█| 7/7 [00:00&lt;00:00, 22.58it/s, loss=0.11, v_num=13, val_loss=
+Epoch 67:  86%|▊| 6/7 [00:00&lt;00:00, 20.98it/s, loss=0.111, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 67: 100%|█| 7/7 [00:00&lt;00:00, 23.37it/s, loss=0.111, v_num=13, val_loss
+Epoch 68:  86%|▊| 6/7 [00:00&lt;00:00, 18.83it/s, loss=0.118, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 68: 100%|█| 7/7 [00:00&lt;00:00, 21.05it/s, loss=0.118, v_num=13, val_loss
+Epoch 69:  86%|▊| 6/7 [00:00&lt;00:00, 20.06it/s, loss=0.12, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 69: 100%|█| 7/7 [00:00&lt;00:00, 22.29it/s, loss=0.12, v_num=13, val_loss=
+Epoch 70:  86%|▊| 6/7 [00:00&lt;00:00, 20.69it/s, loss=0.116, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 70: 100%|█| 7/7 [00:00&lt;00:00, 23.02it/s, loss=0.116, v_num=13, val_loss
+Epoch 71:  86%|▊| 6/7 [00:00&lt;00:00, 19.20it/s, loss=0.11, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 71: 100%|█| 7/7 [00:00&lt;00:00, 21.37it/s, loss=0.11, v_num=13, val_loss=
+Epoch 72:  86%|▊| 6/7 [00:00&lt;00:00, 19.48it/s, loss=0.107, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 72: 100%|█| 7/7 [00:00&lt;00:00, 21.84it/s, loss=0.107, v_num=13, val_loss
+Epoch 73:  86%|▊| 6/7 [00:00&lt;00:00, 21.12it/s, loss=0.122, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 73: 100%|█| 7/7 [00:00&lt;00:00, 23.37it/s, loss=0.122, v_num=13, val_loss
+Epoch 74:  86%|▊| 6/7 [00:00&lt;00:00, 21.01it/s, loss=0.12, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 74: 100%|█| 7/7 [00:00&lt;00:00, 23.29it/s, loss=0.12, v_num=13, val_loss=
+Epoch 75:  86%|▊| 6/7 [00:00&lt;00:00, 19.70it/s, loss=0.146, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 75: 100%|█| 7/7 [00:00&lt;00:00, 21.97it/s, loss=0.146, v_num=13, val_loss
+Epoch 76:  86%|▊| 6/7 [00:00&lt;00:00, 20.47it/s, loss=0.143, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 76: 100%|█| 7/7 [00:00&lt;00:00, 22.76it/s, loss=0.143, v_num=13, val_loss
+Epoch 77:  86%|▊| 6/7 [00:00&lt;00:00, 20.40it/s, loss=0.129, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 77: 100%|█| 7/7 [00:00&lt;00:00, 22.65it/s, loss=0.129, v_num=13, val_loss
+Epoch 78:  86%|▊| 6/7 [00:00&lt;00:00, 20.58it/s, loss=0.135, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 78: 100%|█| 7/7 [00:00&lt;00:00, 22.87it/s, loss=0.135, v_num=13, val_loss
+Epoch 79:  86%|▊| 6/7 [00:00&lt;00:00, 20.94it/s, loss=0.12, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 79: 100%|█| 7/7 [00:00&lt;00:00, 23.21it/s, loss=0.12, v_num=13, val_loss=
+Epoch 80:  86%|▊| 6/7 [00:00&lt;00:00, 20.27it/s, loss=0.119, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 80: 100%|█| 7/7 [00:00&lt;00:00, 22.58it/s, loss=0.119, v_num=13, val_loss
+Epoch 81:  86%|▊| 6/7 [00:00&lt;00:00, 19.90it/s, loss=0.124, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 81: 100%|█| 7/7 [00:00&lt;00:00, 22.04it/s, loss=0.124, v_num=13, val_loss
+Epoch 82:  86%|▊| 6/7 [00:00&lt;00:00, 17.77it/s, loss=0.114, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 82: 100%|█| 7/7 [00:00&lt;00:00, 19.41it/s, loss=0.114, v_num=13, val_loss
+Epoch 83:  86%|▊| 6/7 [00:00&lt;00:00, 13.27it/s, loss=0.111, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 83: 100%|█| 7/7 [00:00&lt;00:00, 14.83it/s, loss=0.111, v_num=13, val_loss
+Epoch 84:  86%|▊| 6/7 [00:00&lt;00:00, 22.01it/s, loss=0.113, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 84: 100%|█| 7/7 [00:00&lt;00:00, 24.43it/s, loss=0.113, v_num=13, val_loss
+Epoch 85:  86%|▊| 6/7 [00:00&lt;00:00, 17.99it/s, loss=0.11, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 85: 100%|█| 7/7 [00:00&lt;00:00, 19.66it/s, loss=0.11, v_num=13, val_loss=
+Epoch 86:  86%|▊| 6/7 [00:00&lt;00:00, 15.81it/s, loss=0.115, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 86: 100%|█| 7/7 [00:00&lt;00:00, 17.58it/s, loss=0.115, v_num=13, val_loss
+Epoch 87:  86%|▊| 6/7 [00:00&lt;00:00, 16.62it/s, loss=0.118, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 87: 100%|█| 7/7 [00:00&lt;00:00, 18.30it/s, loss=0.118, v_num=13, val_loss
+Epoch 88:  86%|▊| 6/7 [00:00&lt;00:00, 15.28it/s, loss=0.115, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 88: 100%|█| 7/7 [00:00&lt;00:00, 17.22it/s, loss=0.115, v_num=13, val_loss
+Epoch 89:  86%|▊| 6/7 [00:00&lt;00:00, 20.83it/s, loss=0.12, v_num=13, val_loss=
+Validating: 0it [00:00, ?it/s]
+Epoch 89: 100%|█| 7/7 [00:00&lt;00:00, 23.17it/s, loss=0.12, v_num=13, val_loss=
+Epoch 90:  86%|▊| 6/7 [00:00&lt;00:00, 21.09it/s, loss=0.117, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 90: 100%|█| 7/7 [00:00&lt;00:00, 23.41it/s, loss=0.117, v_num=13, val_loss
+Epoch 91:  86%|▊| 6/7 [00:00&lt;00:00, 17.57it/s, loss=0.117, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 91: 100%|█| 7/7 [00:00&lt;00:00, 19.69it/s, loss=0.117, v_num=13, val_loss
+Epoch 92:  86%|▊| 6/7 [00:00&lt;00:00, 19.10it/s, loss=0.119, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 92: 100%|█| 7/7 [00:00&lt;00:00, 21.27it/s, loss=0.119, v_num=13, val_loss
+Epoch 93:  86%|▊| 6/7 [00:00&lt;00:00, 17.91it/s, loss=0.114, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 93: 100%|█| 7/7 [00:00&lt;00:00, 20.08it/s, loss=0.114, v_num=13, val_loss
+Epoch 94:  86%|▊| 6/7 [00:00&lt;00:00, 18.40it/s, loss=0.111, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 94: 100%|█| 7/7 [00:00&lt;00:00, 20.44it/s, loss=0.111, v_num=13, val_loss
+Epoch 95:  86%|▊| 6/7 [00:00&lt;00:00, 21.24it/s, loss=0.116, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 95: 100%|█| 7/7 [00:00&lt;00:00, 23.64it/s, loss=0.116, v_num=13, val_loss
+Epoch 96:  86%|▊| 6/7 [00:00&lt;00:00, 20.72it/s, loss=0.124, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 96: 100%|█| 7/7 [00:00&lt;00:00, 22.98it/s, loss=0.124, v_num=13, val_loss
+Epoch 97:  86%|▊| 6/7 [00:00&lt;00:00, 21.46it/s, loss=0.123, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 97: 100%|█| 7/7 [00:00&lt;00:00, 23.85it/s, loss=0.123, v_num=13, val_loss
+Epoch 98:  86%|▊| 6/7 [00:00&lt;00:00, 20.83it/s, loss=0.116, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 98: 100%|█| 7/7 [00:00&lt;00:00, 23.06it/s, loss=0.116, v_num=13, val_loss
+Epoch 99:  86%|▊| 6/7 [00:00&lt;00:00, 18.23it/s, loss=0.108, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 99: 100%|█| 7/7 [00:00&lt;00:00, 19.31it/s, loss=0.108, v_num=13, val_loss
+Epoch 100:  86%|▊| 6/7 [00:00&lt;00:00, 16.64it/s, loss=0.107, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 100: 100%|█| 7/7 [00:00&lt;00:00, 18.47it/s, loss=0.107, v_num=13, val_los
+Epoch 101:  86%|▊| 6/7 [00:00&lt;00:00, 20.47it/s, loss=0.114, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 101: 100%|█| 7/7 [00:00&lt;00:00, 22.80it/s, loss=0.114, v_num=13, val_los
+Epoch 102:  86%|▊| 6/7 [00:00&lt;00:00, 19.90it/s, loss=0.126, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 102: 100%|█| 7/7 [00:00&lt;00:00, 21.87it/s, loss=0.126, v_num=13, val_los
+Epoch 103:  86%|▊| 6/7 [00:00&lt;00:00, 19.23it/s, loss=0.115, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 103: 100%|█| 7/7 [00:00&lt;00:00, 21.14it/s, loss=0.115, v_num=13, val_los
+Epoch 104:  86%|▊| 6/7 [00:00&lt;00:00, 18.95it/s, loss=0.117, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 104: 100%|█| 7/7 [00:00&lt;00:00, 21.02it/s, loss=0.117, v_num=13, val_los
+Epoch 105:  86%|▊| 6/7 [00:00&lt;00:00, 19.93it/s, loss=0.104, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 105: 100%|█| 7/7 [00:00&lt;00:00, 22.25it/s, loss=0.104, v_num=13, val_los
+Epoch 106:  86%|▊| 6/7 [00:00&lt;00:00, 21.12it/s, loss=0.105, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 106: 100%|█| 7/7 [00:00&lt;00:00, 23.45it/s, loss=0.105, v_num=13, val_los
+Epoch 107:  86%|▊| 6/7 [00:00&lt;00:00, 17.31it/s, loss=0.113, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 107: 100%|█| 7/7 [00:00&lt;00:00, 19.23it/s, loss=0.113, v_num=13, val_los
+Epoch 108:  86%|▊| 6/7 [00:00&lt;00:00, 20.16it/s, loss=0.111, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 108: 100%|█| 7/7 [00:00&lt;00:00, 22.50it/s, loss=0.111, v_num=13, val_los
+Epoch 109:  86%|▊| 6/7 [00:00&lt;00:00, 20.83it/s, loss=0.109, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 109: 100%|█| 7/7 [00:00&lt;00:00, 23.25it/s, loss=0.109, v_num=13, val_los
+Epoch 110:  86%|▊| 6/7 [00:00&lt;00:00, 21.35it/s, loss=0.121, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 110: 100%|█| 7/7 [00:00&lt;00:00, 23.64it/s, loss=0.121, v_num=13, val_los
+Epoch 111:  86%|▊| 6/7 [00:00&lt;00:00, 21.16it/s, loss=0.112, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 111: 100%|█| 7/7 [00:00&lt;00:00, 23.53it/s, loss=0.112, v_num=13, val_los
+Epoch 112:  86%|▊| 6/7 [00:00&lt;00:00, 18.49it/s, loss=0.128, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 112: 100%|█| 7/7 [00:00&lt;00:00, 20.43it/s, loss=0.128, v_num=13, val_los
+Epoch 113:  86%|▊| 6/7 [00:00&lt;00:00, 17.54it/s, loss=0.121, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 113: 100%|█| 7/7 [00:00&lt;00:00, 19.36it/s, loss=0.121, v_num=13, val_los
+Epoch 114:  86%|▊| 6/7 [00:00&lt;00:00, 18.26it/s, loss=0.113, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 114: 100%|█| 7/7 [00:00&lt;00:00, 20.40it/s, loss=0.113, v_num=13, val_los
+Epoch 115:  86%|▊| 6/7 [00:00&lt;00:00, 17.12it/s, loss=0.121, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 115: 100%|█| 7/7 [00:00&lt;00:00, 19.12it/s, loss=0.121, v_num=13, val_los
+Epoch 116:  86%|▊| 6/7 [00:00&lt;00:00, 16.78it/s, loss=0.107, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 116: 100%|█| 7/7 [00:00&lt;00:00, 18.59it/s, loss=0.107, v_num=13, val_los
+Epoch 117:  86%|▊| 6/7 [00:00&lt;00:00, 17.85it/s, loss=0.111, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 117: 100%|█| 7/7 [00:00&lt;00:00, 19.83it/s, loss=0.111, v_num=13, val_los
+Epoch 118:  86%|▊| 6/7 [00:00&lt;00:00, 16.21it/s, loss=0.11, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 118: 100%|█| 7/7 [00:00&lt;00:00, 17.97it/s, loss=0.11, v_num=13, val_loss
+Epoch 119:  86%|▊| 6/7 [00:00&lt;00:00, 19.07it/s, loss=0.109, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 119: 100%|█| 7/7 [00:00&lt;00:00, 21.02it/s, loss=0.109, v_num=13, val_los
+Epoch 120:  86%|▊| 6/7 [00:00&lt;00:00, 18.46it/s, loss=0.112, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 120: 100%|█| 7/7 [00:00&lt;00:00, 20.46it/s, loss=0.112, v_num=13, val_los
+Epoch 121:  86%|▊| 6/7 [00:00&lt;00:00, 18.92it/s, loss=0.108, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 121: 100%|█| 7/7 [00:00&lt;00:00, 21.05it/s, loss=0.108, v_num=13, val_los
+Epoch 122:  86%|▊| 6/7 [00:00&lt;00:00, 18.54it/s, loss=0.103, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 122: 100%|█| 7/7 [00:00&lt;00:00, 20.74it/s, loss=0.103, v_num=13, val_los
+Epoch 123:  86%|▊| 6/7 [00:00&lt;00:00, 23.57it/s, loss=0.11, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 123: 100%|█| 7/7 [00:00&lt;00:00, 26.02it/s, loss=0.11, v_num=13, val_loss
+Epoch 124:  86%|▊| 6/7 [00:00&lt;00:00, 21.70it/s, loss=0.104, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 124: 100%|█| 7/7 [00:00&lt;00:00, 24.05it/s, loss=0.104, v_num=13, val_los
+Epoch 125:  86%|▊| 6/7 [00:00&lt;00:00, 20.06it/s, loss=0.132, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 125: 100%|█| 7/7 [00:00&lt;00:00, 22.43it/s, loss=0.132, v_num=13, val_los
+Epoch 126:  86%|▊| 6/7 [00:00&lt;00:00, 23.25it/s, loss=0.132, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 126: 100%|█| 7/7 [00:00&lt;00:00, 25.68it/s, loss=0.132, v_num=13, val_los
+Epoch 127:  86%|▊| 6/7 [00:00&lt;00:00, 22.90it/s, loss=0.127, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 127: 100%|█| 7/7 [00:00&lt;00:00, 25.50it/s, loss=0.127, v_num=13, val_los
+Epoch 128:  86%|▊| 6/7 [00:00&lt;00:00, 20.06it/s, loss=0.129, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 128: 100%|█| 7/7 [00:00&lt;00:00, 22.40it/s, loss=0.129, v_num=13, val_los
+Epoch 129:  86%|▊| 6/7 [00:00&lt;00:00, 23.21it/s, loss=0.102, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 129: 100%|█| 7/7 [00:00&lt;00:00, 25.50it/s, loss=0.102, v_num=13, val_los
+Epoch 130:  86%|▊| 6/7 [00:00&lt;00:00, 23.34it/s, loss=0.11, v_num=13, val_loss
+Validating: 0it [00:00, ?it/s]
+Epoch 130: 100%|█| 7/7 [00:00&lt;00:00, 25.83it/s, loss=0.11, v_num=13, val_loss
+Epoch 131:  86%|▊| 6/7 [00:00&lt;00:00, 22.94it/s, loss=0.106, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 131: 100%|█| 7/7 [00:00&lt;00:00, 25.36it/s, loss=0.106, v_num=13, val_los
+Epoch 132:  86%|▊| 6/7 [00:00&lt;00:00, 23.48it/s, loss=0.107, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 132: 100%|█| 7/7 [00:00&lt;00:00, 25.97it/s, loss=0.107, v_num=13, val_los
+Epoch 133:  86%|▊| 6/7 [00:00&lt;00:00, 23.85it/s, loss=0.0988, v_num=13, val_lo
+Validating: 0it [00:00, ?it/s]
+Epoch 133: 100%|█| 7/7 [00:00&lt;00:00, 26.41it/s, loss=0.0988, v_num=13, val_lo
+Epoch 134:  86%|▊| 6/7 [00:00&lt;00:00, 23.81it/s, loss=0.0987, v_num=13, val_lo
+Validating: 0it [00:00, ?it/s]
+Epoch 134: 100%|█| 7/7 [00:00&lt;00:00, 26.41it/s, loss=0.0987, v_num=13, val_lo
+Epoch 135:  86%|▊| 6/7 [00:00&lt;00:00, 22.94it/s, loss=0.109, v_num=13, val_los
+Validating: 0it [00:00, ?it/s]
+Epoch 135: 100%|█| 7/7 [00:00&lt;00:00, 25.27it/s, loss=0.109, v_num=13, val_los
+Epoch 135: 100%|█| 7/7 [00:00&lt;00:00, 23.41it/s, loss=0.109, v_num=13, val_los
+tensor([[[417.0000],
+         [391.0000],
+         [419.0000],
+         [461.0000],
+         [472.0000],
+         [535.0000],
+         [622.0000],
+         [606.0000],
+         [508.0000],
+         [461.0000],
+         [390.0000],
+         [432.0000]],
+
+        [[357.2356],
+         [359.2705],
+         [406.4317],
+         [408.9790],
+         [412.3742],
+         [482.3345],
+         [520.9820],
+         [521.2548],
+         [458.2994],
+         [391.1345],
+         [353.4926],
+         [381.9161]]], dtype=torch.float64)
+MAE is: tensor(55.0246, dtype=torch.float64)
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 </div>
 </div>
@@ -1798,13 +2967,13 @@ Licensed under the Apache License, Version 2.0.
       
       
         
-        <a href="../../contributing/" class="md-footer__link md-footer__link--next" aria-label="Next: contributing" rel="next">
+        <a href="../deepar/" class="md-footer__link md-footer__link--next" aria-label="Next: deepar mdel" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              contributing
+              deepar mdel
             </div>
           </div>
           <div class="md-footer__button md-icon">
