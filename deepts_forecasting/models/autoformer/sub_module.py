@@ -5,13 +5,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-class my_Layernorm(nn.Module):
+class MyLayerNorm(nn.Module):
     """
     Special designed layernorm for the seasonal part
     """
 
     def __init__(self, channels):
-        super(my_Layernorm, self).__init__()
+        super(MyLayerNorm, self).__init__()
         self.layernorm = nn.LayerNorm(channels)
 
     def forward(self, x):
@@ -20,34 +20,34 @@ class my_Layernorm(nn.Module):
         return x_hat - bias
 
 
-class moving_avg(nn.Module):
+class MovingAvg(nn.Module):
     """
     Moving average block to highlight the trend of time series
     """
 
     def __init__(self, kernel_size, stride):
-        super(moving_avg, self).__init__()
+        super(MovingAvg, self).__init__()
         self.kernel_size = kernel_size
         self.avg = nn.AvgPool1d(kernel_size=kernel_size, stride=stride, padding=0)
 
     def forward(self, x):
         # padding on the both ends of time series
         front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1)
-        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
+        end = x[:, -1:, :].repeat(1, self.kernel_size // 2, 1)
         x = torch.cat([front, x, end], dim=1)
         x = self.avg(x.permute(0, 2, 1))
         x = x.permute(0, 2, 1)
         return x
 
 
-class series_decomp(nn.Module):
+class SeriesDecompose(nn.Module):
     """
     Series decomposition block
     """
 
     def __init__(self, kernel_size):
-        super(series_decomp, self).__init__()
-        self.moving_avg = moving_avg(kernel_size, stride=1)
+        super(SeriesDecompose, self).__init__()
+        self.moving_avg = MovingAvg(kernel_size, stride=1)
 
     def forward(self, x):
         moving_mean = self.moving_avg(x)
@@ -78,8 +78,8 @@ class EncoderLayer(nn.Module):
         self.conv2 = nn.Conv1d(
             in_channels=d_ff, out_channels=d_model, kernel_size=1, bias=False
         )
-        self.decomp1 = series_decomp(moving_avg)
-        self.decomp2 = series_decomp(moving_avg)
+        self.decomp1 = SeriesDecompose(moving_avg)
+        self.decomp2 = SeriesDecompose(moving_avg)
         self.dropout = nn.Dropout(dropout)
         self.activation = F.relu if activation == "relu" else F.gelu
 
@@ -153,9 +153,9 @@ class DecoderLayer(nn.Module):
         self.conv2 = nn.Conv1d(
             in_channels=d_ff, out_channels=d_model, kernel_size=1, bias=False
         )
-        self.decomp1 = series_decomp(moving_avg)
-        self.decomp2 = series_decomp(moving_avg)
-        self.decomp3 = series_decomp(moving_avg)
+        self.decomp1 = SeriesDecompose(moving_avg)
+        self.decomp2 = SeriesDecompose(moving_avg)
+        self.decomp3 = SeriesDecompose(moving_avg)
         self.dropout = nn.Dropout(dropout)
         self.projection = nn.Conv1d(
             in_channels=d_model,

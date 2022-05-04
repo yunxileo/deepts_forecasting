@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "deepts_forecasting"
-version = "0.1.1"
+version = "0.1.2"
 homepage = "https://github.com/yunxileo/deepts_forecasting"
 description = "Deep Learning Models for time series prediction.."
 authors = ["Will Wei <weiwillstat@163.com>"]

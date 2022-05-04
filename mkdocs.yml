@@ -4,12 +4,12 @@ repo_url: https://github.com/yunxileo/deepts_forecasting
 repo_name: deepts_forecasting
 #strict: true
 nav:
-  - home: index.md
-  - installation: installation.md
-  - usage: usage.md
-  - modules: api.md
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Modules: api.md
 #  - API: reference/
-  - examples:
+  - Examples:
     - seq2seq model: examples/getting_started.ipynb
     - deepar mdel: examples/deepar.ipynb
     - nbeats model: examples/nbeats.ipynb
@@ -17,6 +17,8 @@ nav:
     - tcn model: examples/tcn.ipynb
     - tft model: examples/tft.ipynb
     - transformer model: examples/transformer.ipynb
+    - informer mode: examples/informer.ipynb
+    - autoformer model: examples/autoformer.ipynb
   - contributing: contributing.md
   - authors: authors.md
   - history: history.md
