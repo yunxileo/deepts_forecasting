@@ -68,10 +68,11 @@ class Autoformer(BaseModelWithCovariates, ABC):
         dropout=0.1,
         activation="relu",
         loss=nn.L1Loss(),
+        **kwargs
     ):
-        super(Autoformer, self).__init__()
         self.embeddings = None
         self.save_hyperparameters()
+        super(Autoformer, self).__init__(loss=loss, **kwargs)
         # Decomp
         kernel_size = moving_avg
         self.decomp = series_decomp(kernel_size)
