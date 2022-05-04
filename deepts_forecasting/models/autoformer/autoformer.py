@@ -2,7 +2,7 @@
 # import torch.nn as nn
 # from deepts_forecasting.models.autoformer.sub_module import (Encoder, Decoder,
 #                                                  EncoderLayer, DecoderLayer,
-#                                                  my_Layernorm, series_decomp,
+#                                                  MyLayerNorm, SeriesDecompose,
 #                                                  AutoCorrelation, AutoCorrelationLayer
 #                                                  )
 
@@ -20,8 +20,8 @@
 #         self.output_attention = configs.output_attention
 
 #         # Decomp
-#         kernel_size = configs.moving_avg
-#         self.decomp = series_decomp(kernel_size)
+#         kernel_size = configs.MovingAvg
+#         self.decomp = SeriesDecompose(kernel_size)
 
 #         # Embedding
 #         # The series-wise connection inherently contains the sequential information.
@@ -41,12 +41,12 @@
 #                         configs.d_model, configs.n_heads),
 #                     configs.d_model,
 #                     configs.d_ff,
-#                     moving_avg=configs.moving_avg,
+#                     MovingAvg=configs.MovingAvg,
 #                     dropout=configs.dropout,
 #                     activation=configs.activation
 #                 ) for l in range(configs.e_layers)
 #             ],
-#             norm_layer=my_Layernorm(configs.d_model)
+#             norm_layer=MyLayerNorm(configs.d_model)
 #         )
 #         # Decoder
 #         self.decoder = Decoder(
@@ -63,13 +63,13 @@
 #                     configs.d_model,
 #                     configs.c_out,
 #                     configs.d_ff,
-#                     moving_avg=configs.moving_avg,
+#                     MovingAvg=configs.MovingAvg,
 #                     dropout=configs.dropout,
 #                     activation=configs.activation,
 #                 )
 #                 for l in range(configs.d_layers)
 #             ],
-#             norm_layer=my_Layernorm(configs.d_model),
+#             norm_layer=MyLayerNorm(configs.d_model),
 #             projection=nn.Linear(configs.d_model, configs.c_out, bias=True)
 #         )
 

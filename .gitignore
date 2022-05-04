@@ -66,6 +66,7 @@ instance/
 docs/_build/
 docs/reference/
 docs/examples/lightning_logs/
+lightning_logs
 
 # PyBuilder
 target/

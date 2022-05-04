@@ -12,8 +12,8 @@ from deepts_forecasting.models.autoformer.sub_module import (
     DecoderLayer,
     Encoder,
     EncoderLayer,
-    my_Layernorm,
-    series_decomp,
+    MyLayerNorm,
+    SeriesDecompose,
 )
 from deepts_forecasting.models.base_model import BaseModelWithCovariates
 
@@ -75,7 +75,7 @@ class Autoformer(BaseModelWithCovariates, ABC):
         super(Autoformer, self).__init__(loss=loss, **kwargs)
         # Decomp
         kernel_size = moving_avg
-        self.decomp = series_decomp(kernel_size)
+        self.decomp = SeriesDecompose(kernel_size)
         encoder_cont_size = len(self.hparams.x_reals)
         decoder_cont_size = len(
             self.hparams.time_varying_reals_decoder + self.hparams.static_reals
@@ -112,7 +112,7 @@ class Autoformer(BaseModelWithCovariates, ABC):
                 )
                 for num in range(num_layers)
             ],
-            norm_layer=my_Layernorm(d_model),
+            norm_layer=MyLayerNorm(d_model),
         )
         # Decoder
         self.decoder = Decoder(
@@ -147,7 +147,7 @@ class Autoformer(BaseModelWithCovariates, ABC):
                 )
                 for num in range(num_layers)
             ],
-            norm_layer=my_Layernorm(d_model),
+            norm_layer=MyLayerNorm(d_model),
             projection=None,
         )
 
