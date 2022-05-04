@@ -46,6 +46,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>http://yunxileo.github.io/deepts_forecasting/examples/autoformer/</loc>
+         <lastmod>2022-05-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/deepar/</loc>
          <lastmod>2022-05-04</lastmod>
          <changefreq>daily</changefreq>

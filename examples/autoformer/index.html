@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="http://yunxileo.github.io/deepts_forecasting/examples/informer/">
+        <link rel="canonical" href="http://yunxileo.github.io/deepts_forecasting/examples/autoformer/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.0.0">
     
     
       
-        <title>informer mode - DeepTS_Forecasting</title>
+        <title>autoformer model - DeepTS_Forecasting</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              informer mode
+              autoformer model
             
           </span>
         </div>
@@ -527,6 +527,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../informer/" class="md-nav__link">
+        informer mode
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -539,12 +553,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          informer mode
+          autoformer model
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        informer mode
+        autoformer model
       </a>
       
         
@@ -601,20 +615,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../autoformer/" class="md-nav__link">
-        autoformer model
-      </a>
     </li>
   
 
@@ -744,7 +744,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/yunxileo/deepts_forecasting/edit/master/docs/examples/informer.ipynb" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/yunxileo/deepts_forecasting/edit/master/docs/examples/autoformer.ipynb" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
@@ -1863,7 +1863,7 @@ Licensed under the Apache License, Version 2.0.
 <span class="kn">from</span> <span class="nn">deepts_forecasting.utils.data</span> <span class="kn">import</span> <span class="n">TimeSeriesDataSet</span>
 <span class="kn">from</span> <span class="nn">deepts_forecasting.utils.data.encoders</span> <span class="kn">import</span> <span class="n">TorchNormalizer</span>
 <span class="kn">from</span> <span class="nn">deepts_forecasting.datasets</span> <span class="kn">import</span> <span class="n">AirPassengersDataset</span>
-<span class="kn">from</span> <span class="nn">deepts_forecasting.models.informer</span> <span class="kn">import</span> <span class="n">Informer</span>
+<span class="kn">from</span> <span class="nn">deepts_forecasting.models.autoformer</span> <span class="kn">import</span> <span class="n">Autoformer</span>
 </pre></div>
 <div id="cell-2" class="clipboard-copy-txt">import numpy as np
 import torch
@@ -1875,7 +1875,7 @@ from pytorch_lightning.loggers import TensorBoardLogger
 from deepts_forecasting.utils.data import TimeSeriesDataSet
 from deepts_forecasting.utils.data.encoders import TorchNormalizer
 from deepts_forecasting.datasets import AirPassengersDataset
-from deepts_forecasting.models.informer import Informer
+from deepts_forecasting.models.autoformer import Autoformer
 </div>
     
         </div>
@@ -1926,7 +1926,7 @@ from deepts_forecasting.models.informer import Informer
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1975,7 +1975,7 @@ data.head()</div>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
 
 
@@ -2081,7 +2081,7 @@ data.head()</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2185,7 +2185,7 @@ val_dataloader = DataLoader(validation, batch_size=batch_size, shuffle=False, dr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2215,11 +2215,12 @@ val_dataloader = DataLoader(validation, batch_size=batch_size, shuffle=False, dr
     <span class="n">logger</span><span class="o">=</span><span class="n">TensorBoardLogger</span><span class="p">(</span><span class="s2">&quot;lightning_logs&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">Informer</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">training</span><span class="p">,</span>
-                                  <span class="n">d_model</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
-                                  <span class="n">d_ff</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
-                                  <span class="n">n_heads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                                  <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Autoformer</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">training</span><span class="p">,</span>
+                                    <span class="n">d_model</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span>
+                                    <span class="n">d_ff</span><span class="o">=</span><span class="mi">56</span><span class="p">,</span>
+                                    <span class="n">n_heads</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                    <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                    <span class="n">moving_avg</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
                                       <span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">summarize</span>
 </pre></div>
@@ -2238,11 +2239,12 @@ trainer = pl.Trainer(
     logger=TensorBoardLogger("lightning_logs")
 )
 
-model = Informer.from_dataset(training,
-                                  d_model=16,
-                                  d_ff=16,
-                                  n_heads=1,
-                                  num_layers=2,
+model = Autoformer.from_dataset(training,
+                                    d_model=28,
+                                    d_ff=56,
+                                    n_heads=2,
+                                    num_layers=2,
+                                    moving_avg=12,
                                       )
 model.summarize</div>
     
@@ -2277,128 +2279,169 @@ IPU available: False, using: 0 IPUs
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;bound method LightningModule.summarize of Informer(
+<pre>&lt;bound method LightningModule.summarize of Autoformer(
   (loss): L1Loss()
   (logging_metrics): ModuleList()
-  (encoder_input_linear): Linear(in_features=7, out_features=16, bias=True)
-  (decoder_input_linear): Linear(in_features=6, out_features=16, bias=True)
-  (encoder_positional_encoding): PositionalEncoding(
-    (dropout): Dropout(p=0.1, inplace=False)
-  )
-  (decoder_positional_encoding): PositionalEncoding(
-    (dropout): Dropout(p=0.1, inplace=False)
-  )
-  (informer_encoder): InformerEncoder(
-    (encoder_layers): ModuleList(
-      (0): InformerEncoderLayer(
-        (attention): AttentionLayer(
-          (inner_attention): ProbAttention(
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (query_projection): Linear(in_features=16, out_features=16, bias=True)
-          (key_projection): Linear(in_features=16, out_features=16, bias=True)
-          (value_projection): Linear(in_features=16, out_features=16, bias=True)
-          (out_projection): Linear(in_features=16, out_features=16, bias=True)
-        )
-        (conv1): Conv1d(16, 16, kernel_size=(1,), stride=(1,))
-        (conv2): Conv1d(16, 16, kernel_size=(1,), stride=(1,))
-        (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (norm2): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (dropout): Dropout(p=0.1, inplace=False)
-      )
-      (1): InformerEncoderLayer(
-        (attention): AttentionLayer(
-          (inner_attention): ProbAttention(
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (query_projection): Linear(in_features=16, out_features=16, bias=True)
-          (key_projection): Linear(in_features=16, out_features=16, bias=True)
-          (value_projection): Linear(in_features=16, out_features=16, bias=True)
-          (out_projection): Linear(in_features=16, out_features=16, bias=True)
-        )
-        (conv1): Conv1d(16, 16, kernel_size=(1,), stride=(1,))
-        (conv2): Conv1d(16, 16, kernel_size=(1,), stride=(1,))
-        (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (norm2): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (dropout): Dropout(p=0.1, inplace=False)
-      )
+  (decomp): series_decomp(
+    (moving_avg): moving_avg(
+      (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
     )
-    (conv_layers): ModuleList(
-      (0): ConvLayer(
-        (downConv): Conv1d(16, 16, kernel_size=(3,), stride=(1,), padding=(2,), padding_mode=circular)
-        (norm): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-        (activation): ELU(alpha=1.0)
-        (maxPool): MaxPool1d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
-      )
-    )
-    (norm): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
   )
-  (informer_decoder): InformerDecoder(
-    (layers): ModuleList(
-      (0): InformerDecoderLayer(
-        (self_attention): AttentionLayer(
-          (inner_attention): FullAttention(
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (query_projection): Linear(in_features=16, out_features=16, bias=True)
-          (key_projection): Linear(in_features=16, out_features=16, bias=True)
-          (value_projection): Linear(in_features=16, out_features=16, bias=True)
-          (out_projection): Linear(in_features=16, out_features=16, bias=True)
-        )
-        (cross_attention): AttentionLayer(
-          (inner_attention): FullAttention(
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (query_projection): Linear(in_features=16, out_features=16, bias=True)
-          (key_projection): Linear(in_features=16, out_features=16, bias=True)
-          (value_projection): Linear(in_features=16, out_features=16, bias=True)
-          (out_projection): Linear(in_features=16, out_features=16, bias=True)
-        )
-        (conv1): Conv1d(16, 64, kernel_size=(1,), stride=(1,))
-        (conv2): Conv1d(64, 16, kernel_size=(1,), stride=(1,))
-        (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (norm2): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (norm3): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (dropout): Dropout(p=0.1, inplace=False)
-      )
-      (1): InformerDecoderLayer(
-        (self_attention): AttentionLayer(
-          (inner_attention): FullAttention(
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (query_projection): Linear(in_features=16, out_features=16, bias=True)
-          (key_projection): Linear(in_features=16, out_features=16, bias=True)
-          (value_projection): Linear(in_features=16, out_features=16, bias=True)
-          (out_projection): Linear(in_features=16, out_features=16, bias=True)
-        )
-        (cross_attention): AttentionLayer(
-          (inner_attention): FullAttention(
-            (dropout): Dropout(p=0.1, inplace=False)
-          )
-          (query_projection): Linear(in_features=16, out_features=16, bias=True)
-          (key_projection): Linear(in_features=16, out_features=16, bias=True)
-          (value_projection): Linear(in_features=16, out_features=16, bias=True)
-          (out_projection): Linear(in_features=16, out_features=16, bias=True)
-        )
-        (conv1): Conv1d(16, 64, kernel_size=(1,), stride=(1,))
-        (conv2): Conv1d(64, 16, kernel_size=(1,), stride=(1,))
-        (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (norm2): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (norm3): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-        (dropout): Dropout(p=0.1, inplace=False)
-      )
-    )
-    (norm): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
-  )
-  (out_linear): Linear(in_features=16, out_features=1, bias=True)
   (embeddings): ModuleDict(
     (month): Embedding(12, 6)
+  )
+  (encoder_input_linear): TokenEmbedding(
+    (tokenConv): Conv1d(7, 28, kernel_size=(3,), stride=(1,), padding=(1,), bias=False, padding_mode=circular)
+  )
+  (decoder_input_linear): TokenEmbedding(
+    (tokenConv): Conv1d(6, 28, kernel_size=(3,), stride=(1,), padding=(1,), bias=False, padding_mode=circular)
+  )
+  (out_linear): Linear(in_features=28, out_features=1, bias=True)
+  (encoder): Encoder(
+    (attn_layers): ModuleList(
+      (0): EncoderLayer(
+        (attention): AutoCorrelationLayer(
+          (inner_correlation): AutoCorrelation(
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (query_projection): Linear(in_features=28, out_features=28, bias=True)
+          (key_projection): Linear(in_features=28, out_features=28, bias=True)
+          (value_projection): Linear(in_features=28, out_features=28, bias=True)
+          (out_projection): Linear(in_features=28, out_features=28, bias=True)
+        )
+        (conv1): Conv1d(28, 56, kernel_size=(1,), stride=(1,), bias=False)
+        (conv2): Conv1d(56, 28, kernel_size=(1,), stride=(1,), bias=False)
+        (decomp1): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (decomp2): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (1): EncoderLayer(
+        (attention): AutoCorrelationLayer(
+          (inner_correlation): AutoCorrelation(
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (query_projection): Linear(in_features=28, out_features=28, bias=True)
+          (key_projection): Linear(in_features=28, out_features=28, bias=True)
+          (value_projection): Linear(in_features=28, out_features=28, bias=True)
+          (out_projection): Linear(in_features=28, out_features=28, bias=True)
+        )
+        (conv1): Conv1d(28, 56, kernel_size=(1,), stride=(1,), bias=False)
+        (conv2): Conv1d(56, 28, kernel_size=(1,), stride=(1,), bias=False)
+        (decomp1): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (decomp2): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (norm): my_Layernorm(
+      (layernorm): LayerNorm((28,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (decoder): Decoder(
+    (layers): ModuleList(
+      (0): DecoderLayer(
+        (self_attention): AutoCorrelationLayer(
+          (inner_correlation): AutoCorrelation(
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (query_projection): Linear(in_features=28, out_features=28, bias=True)
+          (key_projection): Linear(in_features=28, out_features=28, bias=True)
+          (value_projection): Linear(in_features=28, out_features=28, bias=True)
+          (out_projection): Linear(in_features=28, out_features=28, bias=True)
+        )
+        (cross_attention): AutoCorrelationLayer(
+          (inner_correlation): AutoCorrelation(
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (query_projection): Linear(in_features=28, out_features=28, bias=True)
+          (key_projection): Linear(in_features=28, out_features=28, bias=True)
+          (value_projection): Linear(in_features=28, out_features=28, bias=True)
+          (out_projection): Linear(in_features=28, out_features=28, bias=True)
+        )
+        (conv1): Conv1d(28, 56, kernel_size=(1,), stride=(1,), bias=False)
+        (conv2): Conv1d(56, 28, kernel_size=(1,), stride=(1,), bias=False)
+        (decomp1): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (decomp2): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (decomp3): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (dropout): Dropout(p=0.1, inplace=False)
+        (projection): Conv1d(28, 28, kernel_size=(3,), stride=(1,), padding=(1,), bias=False, padding_mode=circular)
+      )
+      (1): DecoderLayer(
+        (self_attention): AutoCorrelationLayer(
+          (inner_correlation): AutoCorrelation(
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (query_projection): Linear(in_features=28, out_features=28, bias=True)
+          (key_projection): Linear(in_features=28, out_features=28, bias=True)
+          (value_projection): Linear(in_features=28, out_features=28, bias=True)
+          (out_projection): Linear(in_features=28, out_features=28, bias=True)
+        )
+        (cross_attention): AutoCorrelationLayer(
+          (inner_correlation): AutoCorrelation(
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (query_projection): Linear(in_features=28, out_features=28, bias=True)
+          (key_projection): Linear(in_features=28, out_features=28, bias=True)
+          (value_projection): Linear(in_features=28, out_features=28, bias=True)
+          (out_projection): Linear(in_features=28, out_features=28, bias=True)
+        )
+        (conv1): Conv1d(28, 56, kernel_size=(1,), stride=(1,), bias=False)
+        (conv2): Conv1d(56, 28, kernel_size=(1,), stride=(1,), bias=False)
+        (decomp1): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (decomp2): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (decomp3): series_decomp(
+          (moving_avg): moving_avg(
+            (avg): AvgPool1d(kernel_size=(12,), stride=(1,), padding=(0,))
+          )
+        )
+        (dropout): Dropout(p=0.1, inplace=False)
+        (projection): Conv1d(28, 28, kernel_size=(3,), stride=(1,), padding=(1,), bias=False, padding_mode=circular)
+      )
+    )
+    (norm): my_Layernorm(
+      (layernorm): LayerNorm((28,), eps=1e-05, elementwise_affine=True)
+    )
   )
 )&gt;</pre>
 </div>
@@ -2416,7 +2459,7 @@ IPU available: False, using: 0 IPUs
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2451,7 +2494,7 @@ IPU available: False, using: 0 IPUs
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
 
 
@@ -2459,13 +2502,14 @@ IPU available: False, using: 0 IPUs
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>&#34;activation&#34;:                        relu
 &#34;categorical_groups&#34;:                {}
-&#34;d_ff&#34;:                              16
-&#34;d_model&#34;:                           16
+&#34;d_ff&#34;:                              56
+&#34;d_model&#34;:                           28
 &#34;dropout&#34;:                           0.1
 &#34;embedding_labels&#34;:                  {&#39;month&#39;: array([&#39;1&#39;, &#39;10&#39;, &#39;11&#39;, &#39;12&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;],
       dtype=object)}
 &#34;embedding_paddings&#34;:                []
 &#34;embedding_sizes&#34;:                   {&#39;month&#39;: [12, 6]}
+&#34;factor&#34;:                            5
 &#34;learning_rate&#34;:                     0.001
 &#34;log_interval&#34;:                      -1
 &#34;log_val_interval&#34;:                  None
@@ -2474,7 +2518,8 @@ IPU available: False, using: 0 IPUs
 &#34;max_encoder_length&#34;:                18
 &#34;max_prediction_length&#34;:             12
 &#34;monotone_constaints&#34;:               {}
-&#34;n_heads&#34;:                           1
+&#34;moving_avg&#34;:                        12
+&#34;n_heads&#34;:                           2
 &#34;num_layers&#34;:                        2
 &#34;output_size&#34;:                       1
 &#34;output_transformer&#34;:                TorchNormalizer()
@@ -2512,7 +2557,7 @@ IPU available: False, using: 0 IPUs
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2533,7 +2578,7 @@ IPU available: False, using: 0 IPUs
 
 <span class="c1"># (given that we use early stopping, this is not necessarily the last epoch)</span>
 <span class="n">best_model_path</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span>
-<span class="n">best_model</span> <span class="o">=</span> <span class="n">Informer</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">Autoformer</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span>
 
 <span class="c1"># calcualte mean absolute error on validation set</span>
 <span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">transform_output</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">target_scale</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;target_scale&#39;</span><span class="p">])</span>
@@ -2551,7 +2596,7 @@ IPU available: False, using: 0 IPUs
 
 # (given that we use early stopping, this is not necessarily the last epoch)
 best_model_path = trainer.checkpoint_callback.best_model_path
-best_model = Informer.load_from_checkpoint(best_model_path)
+best_model = Autoformer.load_from_checkpoint(best_model_path)
 
 # calcualte mean absolute error on validation set
 actuals = torch.cat([model.transform_output(prediction=y, target_scale=x['target_scale'])
@@ -2583,24 +2628,25 @@ print('MAE is:', mae)</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-  | Name                        | Type               | Params
--------------------------------------------------------------------
-0 | loss                        | L1Loss             | 0     
-1 | logging_metrics             | ModuleList         | 0     
-2 | encoder_input_linear        | Linear             | 128   
-3 | decoder_input_linear        | Linear             | 112   
-4 | encoder_positional_encoding | PositionalEncoding | 0     
-5 | decoder_positional_encoding | PositionalEncoding | 0     
-6 | informer_encoder            | InformerEncoder    | 2.5 K 
-7 | informer_decoder            | InformerDecoder    | 4.4 K 
-8 | out_linear                  | Linear             | 17    
-9 | embeddings                  | ModuleDict         | 72    
--------------------------------------------------------------------
-7.3 K     Trainable params
+<pre>D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:735: LightningDeprecationWarning: `trainer.fit(train_dataloader)` is deprecated in v1.4 and will be removed in v1.6. Use `trainer.fit(train_dataloaders)` instead. HINT: added &#39;s&#39;
+  rank_zero_deprecation(
+
+  | Name                 | Type           | Params
+--------------------------------------------------------
+0 | loss                 | L1Loss         | 0     
+1 | logging_metrics      | ModuleList     | 0     
+2 | decomp               | series_decomp  | 0     
+3 | embeddings           | ModuleDict     | 72    
+4 | encoder_input_linear | TokenEmbedding | 588   
+5 | decoder_input_linear | TokenEmbedding | 504   
+6 | out_linear           | Linear         | 29    
+7 | encoder              | Encoder        | 12.8 K
+8 | decoder              | Decoder        | 24.0 K
+--------------------------------------------------------
+38.0 K    Trainable params
 0         Non-trainable params
-7.3 K     Total params
-0.029     Total estimated model params size (MB)
+38.0 K    Total params
+0.152     Total estimated model params size (MB)
 </pre>
 </div>
 </div>
@@ -2612,7 +2658,7 @@ print('MAE is:', mae)</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>                                                                                              </pre>
+<pre>Validation sanity check:   0%|                                          | 0/1 [00:00&lt;?, ?it/s]</pre>
 </div>
 </div>
 
@@ -2623,7 +2669,8 @@ print('MAE is:', mae)</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Global seed set to 1234
+<pre>D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\data_loading.py:132: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 16 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
 </pre>
 </div>
 </div>
@@ -2634,284 +2681,187 @@ print('MAE is:', mae)</div>
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Epoch 0:  86%|████████████████████████▊    | 6/7 [00:00&lt;00:00, 36.03it/s, loss=1.05, v_num=22]
-Validating: 0it [00:00, ?it/s]
-Epoch 0: 100%|█████████████| 7/7 [00:00&lt;00:00, 38.77it/s, loss=1.05, v_num=22, val_loss=2.400]
-Epoch 1:  86%|▊| 6/7 [00:00&lt;00:00, 30.30it/s, loss=0.948, v_num=22, val_loss=2.400, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 1: 100%|█| 7/7 [00:00&lt;00:00, 32.94it/s, loss=0.948, v_num=22, val_loss=2.320, train_loss
-Epoch 2:  86%|▊| 6/7 [00:00&lt;00:00, 27.97it/s, loss=0.895, v_num=22, val_loss=2.320, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 2: 100%|█| 7/7 [00:00&lt;00:00, 30.30it/s, loss=0.895, v_num=22, val_loss=2.260, train_loss
-Epoch 3:  86%|▊| 6/7 [00:00&lt;00:00, 15.81it/s, loss=0.887, v_num=22, val_loss=2.260, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 3: 100%|█| 7/7 [00:00&lt;00:00, 17.17it/s, loss=0.887, v_num=22, val_loss=2.210, train_loss
-Epoch 4:  86%|▊| 6/7 [00:00&lt;00:00, 17.12it/s, loss=0.848, v_num=22, val_loss=2.210, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 4: 100%|█| 7/7 [00:00&lt;00:00, 18.59it/s, loss=0.848, v_num=22, val_loss=2.170, train_loss
-Epoch 5:  86%|▊| 6/7 [00:00&lt;00:00, 14.18it/s, loss=0.829, v_num=22, val_loss=2.170, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 5: 100%|█| 7/7 [00:00&lt;00:00, 15.57it/s, loss=0.829, v_num=22, val_loss=2.130, train_loss
-Epoch 6:  86%|▊| 6/7 [00:00&lt;00:00, 16.24it/s, loss=0.815, v_num=22, val_loss=2.130, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 6: 100%|█| 7/7 [00:00&lt;00:00, 17.65it/s, loss=0.815, v_num=22, val_loss=2.090, train_loss
-Epoch 7:  86%|▊| 6/7 [00:00&lt;00:00, 16.04it/s, loss=0.803, v_num=22, val_loss=2.090, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 7: 100%|█| 7/7 [00:00&lt;00:00, 17.56it/s, loss=0.803, v_num=22, val_loss=2.050, train_loss
-Epoch 8:  86%|▊| 6/7 [00:00&lt;00:00, 14.69it/s, loss=0.787, v_num=22, val_loss=2.050, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 8: 100%|█| 7/7 [00:00&lt;00:00, 16.09it/s, loss=0.787, v_num=22, val_loss=2.000, train_loss
-Epoch 9:  86%|▊| 6/7 [00:00&lt;00:00, 17.44it/s, loss=0.776, v_num=22, val_loss=2.000, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 9: 100%|█| 7/7 [00:00&lt;00:00, 18.92it/s, loss=0.776, v_num=22, val_loss=1.960, train_loss
-Epoch 10:  86%|▊| 6/7 [00:00&lt;00:00, 16.13it/s, loss=0.766, v_num=22, val_loss=1.960, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 10: 100%|█| 7/7 [00:00&lt;00:00, 17.32it/s, loss=0.766, v_num=22, val_loss=1.920, train_los
-Epoch 11:  86%|▊| 6/7 [00:00&lt;00:00, 12.31it/s, loss=0.757, v_num=22, val_loss=1.920, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 11: 100%|█| 7/7 [00:00&lt;00:00, 13.51it/s, loss=0.757, v_num=22, val_loss=1.870, train_los
-Epoch 12:  86%|▊| 6/7 [00:00&lt;00:00, 12.03it/s, loss=0.748, v_num=22, val_loss=1.870, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 12: 100%|█| 7/7 [00:00&lt;00:00, 12.98it/s, loss=0.748, v_num=22, val_loss=1.820, train_los
-Epoch 13:  86%|▊| 6/7 [00:00&lt;00:00, 14.53it/s, loss=0.732, v_num=22, val_loss=1.820, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 13: 100%|█| 7/7 [00:00&lt;00:00, 15.98it/s, loss=0.732, v_num=22, val_loss=1.750, train_los
-Epoch 14:  86%|▊| 6/7 [00:00&lt;00:00, 15.13it/s, loss=0.716, v_num=22, val_loss=1.750, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 14: 100%|█| 7/7 [00:00&lt;00:00, 16.57it/s, loss=0.716, v_num=22, val_loss=1.670, train_los
-Epoch 15:  86%|▊| 6/7 [00:00&lt;00:00, 17.36it/s, loss=0.694, v_num=22, val_loss=1.670, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 15: 100%|█| 7/7 [00:00&lt;00:00, 18.94it/s, loss=0.694, v_num=22, val_loss=1.570, train_los
-Epoch 16:  86%|▊| 6/7 [00:00&lt;00:00, 17.96it/s, loss=0.675, v_num=22, val_loss=1.570, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 16: 100%|█| 7/7 [00:00&lt;00:00, 19.36it/s, loss=0.675, v_num=22, val_loss=1.470, train_los
-Epoch 17:  86%|▊| 6/7 [00:00&lt;00:00, 19.86it/s, loss=0.648, v_num=22, val_loss=1.470, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 17: 100%|█| 7/7 [00:00&lt;00:00, 21.18it/s, loss=0.648, v_num=22, val_loss=1.370, train_los
-Epoch 18:  86%|▊| 6/7 [00:00&lt;00:00, 19.20it/s, loss=0.616, v_num=22, val_loss=1.370, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 18: 100%|█| 7/7 [00:00&lt;00:00, 21.05it/s, loss=0.616, v_num=22, val_loss=1.270, train_los
-Epoch 19:  86%|▊| 6/7 [00:00&lt;00:00, 22.18it/s, loss=0.58, v_num=22, val_loss=1.270, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 19: 100%|█| 7/7 [00:00&lt;00:00, 23.97it/s, loss=0.58, v_num=22, val_loss=1.160, train_loss
-Epoch 20:  86%|▊| 6/7 [00:00&lt;00:00, 22.18it/s, loss=0.541, v_num=22, val_loss=1.160, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 20: 100%|█| 7/7 [00:00&lt;00:00, 24.18it/s, loss=0.541, v_num=22, val_loss=1.090, train_los
-Epoch 21:  86%|▊| 6/7 [00:00&lt;00:00, 21.89it/s, loss=0.511, v_num=22, val_loss=1.090, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 21: 100%|█| 7/7 [00:00&lt;00:00, 23.49it/s, loss=0.511, v_num=22, val_loss=1.060, train_los
-Epoch 22:  86%|▊| 6/7 [00:00&lt;00:00, 19.90it/s, loss=0.477, v_num=22, val_loss=1.060, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 22: 100%|█| 7/7 [00:00&lt;00:00, 21.94it/s, loss=0.477, v_num=22, val_loss=1.020, train_los
-Epoch 23:  86%|▊| 6/7 [00:00&lt;00:00, 23.48it/s, loss=0.443, v_num=22, val_loss=1.020, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 23: 100%|█| 7/7 [00:00&lt;00:00, 25.40it/s, loss=0.443, v_num=22, val_loss=1.070, train_los
-Epoch 24:  86%|▊| 6/7 [00:00&lt;00:00, 22.98it/s, loss=0.413, v_num=22, val_loss=1.070, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 24: 100%|█| 7/7 [00:00&lt;00:00, 25.18it/s, loss=0.413, v_num=22, val_loss=1.110, train_los
-Epoch 25:  86%|▊| 6/7 [00:00&lt;00:00, 21.74it/s, loss=0.382, v_num=22, val_loss=1.110, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 25: 100%|█| 7/7 [00:00&lt;00:00, 23.60it/s, loss=0.382, v_num=22, val_loss=1.060, train_los
-Epoch 26:  86%|▊| 6/7 [00:00&lt;00:00, 23.21it/s, loss=0.358, v_num=22, val_loss=1.060, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 26: 100%|█| 7/7 [00:00&lt;00:00, 25.40it/s, loss=0.358, v_num=22, val_loss=1.090, train_los
-Epoch 27:  86%|▊| 6/7 [00:00&lt;00:00, 22.68it/s, loss=0.33, v_num=22, val_loss=1.090, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 27: 100%|█| 7/7 [00:00&lt;00:00, 24.56it/s, loss=0.33, v_num=22, val_loss=1.180, train_loss
-Epoch 28:  86%|▊| 6/7 [00:00&lt;00:00, 21.54it/s, loss=0.308, v_num=22, val_loss=1.180, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 28: 100%|█| 7/7 [00:00&lt;00:00, 23.21it/s, loss=0.308, v_num=22, val_loss=1.240, train_los
-Epoch 29:  86%|▊| 6/7 [00:00&lt;00:00, 21.97it/s, loss=0.295, v_num=22, val_loss=1.240, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 29: 100%|█| 7/7 [00:00&lt;00:00, 23.64it/s, loss=0.295, v_num=22, val_loss=1.360, train_los
-Epoch 30:  86%|▊| 6/7 [00:00&lt;00:00, 23.25it/s, loss=0.282, v_num=22, val_loss=1.360, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 30: 100%|█| 7/7 [00:00&lt;00:00, 25.09it/s, loss=0.282, v_num=22, val_loss=1.270, train_los
-Epoch 31:  86%|▊| 6/7 [00:00&lt;00:00, 20.27it/s, loss=0.28, v_num=22, val_loss=1.270, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 31: 100%|█| 7/7 [00:00&lt;00:00, 22.18it/s, loss=0.28, v_num=22, val_loss=1.360, train_loss
-Epoch 32:  86%|▊| 6/7 [00:00&lt;00:00, 21.54it/s, loss=0.267, v_num=22, val_loss=1.360, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 32: 100%|█| 7/7 [00:00&lt;00:00, 23.49it/s, loss=0.267, v_num=22, val_loss=1.330, train_los
-Epoch 33:  86%|▊| 6/7 [00:00&lt;00:00, 17.49it/s, loss=0.26, v_num=22, val_loss=1.330, train_loss
-Validating: 0it [00:00, ?it/s]
-Epoch 33: 100%|█| 7/7 [00:00&lt;00:00, 18.56it/s, loss=0.26, v_num=22, val_loss=1.460, train_loss
-Epoch 34:  86%|▊| 6/7 [00:00&lt;00:00, 19.29it/s, loss=0.253, v_num=22, val_loss=1.460, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 34: 100%|█| 7/7 [00:00&lt;00:00, 20.86it/s, loss=0.253, v_num=22, val_loss=1.520, train_los
-Epoch 35:  86%|▊| 6/7 [00:00&lt;00:00, 24.19it/s, loss=0.247, v_num=22, val_loss=1.520, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 35: 100%|█| 7/7 [00:00&lt;00:00, 26.51it/s, loss=0.247, v_num=22, val_loss=1.530, train_los
-Epoch 36:  86%|▊| 6/7 [00:00&lt;00:00, 24.64it/s, loss=0.245, v_num=22, val_loss=1.530, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 36: 100%|█| 7/7 [00:00&lt;00:00, 27.07it/s, loss=0.245, v_num=22, val_loss=1.600, train_los
-Epoch 37:  86%|▊| 6/7 [00:00&lt;00:00, 24.14it/s, loss=0.238, v_num=22, val_loss=1.600, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 37: 100%|█| 7/7 [00:00&lt;00:00, 26.26it/s, loss=0.238, v_num=22, val_loss=1.540, train_los
-Epoch 38:  86%|▊| 6/7 [00:00&lt;00:00, 25.86it/s, loss=0.228, v_num=22, val_loss=1.540, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 38: 100%|█| 7/7 [00:00&lt;00:00, 28.22it/s, loss=0.228, v_num=22, val_loss=1.400, train_los
-Epoch 39:  86%|▊| 6/7 [00:00&lt;00:00, 24.04it/s, loss=0.226, v_num=22, val_loss=1.400, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 39: 100%|█| 7/7 [00:00&lt;00:00, 25.78it/s, loss=0.226, v_num=22, val_loss=1.470, train_los
-Epoch 40:  86%|▊| 6/7 [00:00&lt;00:00, 24.39it/s, loss=0.221, v_num=22, val_loss=1.470, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 40: 100%|█| 7/7 [00:00&lt;00:00, 26.46it/s, loss=0.221, v_num=22, val_loss=1.660, train_los
-Epoch 41:  86%|▊| 6/7 [00:00&lt;00:00, 25.42it/s, loss=0.221, v_num=22, val_loss=1.660, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 41: 100%|█| 7/7 [00:00&lt;00:00, 27.72it/s, loss=0.221, v_num=22, val_loss=1.630, train_los
-Epoch 42:  86%|▊| 6/7 [00:00&lt;00:00, 23.57it/s, loss=0.217, v_num=22, val_loss=1.630, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 42: 100%|█| 7/7 [00:00&lt;00:00, 25.87it/s, loss=0.217, v_num=22, val_loss=1.600, train_los
-Epoch 43:  86%|▊| 6/7 [00:00&lt;00:00, 25.15it/s, loss=0.213, v_num=22, val_loss=1.600, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 43: 100%|█| 7/7 [00:00&lt;00:00, 27.55it/s, loss=0.213, v_num=22, val_loss=1.760, train_los
-Epoch 44:  86%|▊| 6/7 [00:00&lt;00:00, 24.64it/s, loss=0.218, v_num=22, val_loss=1.760, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 44: 100%|█| 7/7 [00:00&lt;00:00, 26.51it/s, loss=0.218, v_num=22, val_loss=1.610, train_los
-Epoch 45:  86%|▊| 6/7 [00:00&lt;00:00, 24.84it/s, loss=0.217, v_num=22, val_loss=1.610, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 45: 100%|█| 7/7 [00:00&lt;00:00, 27.23it/s, loss=0.217, v_num=22, val_loss=1.620, train_los
-Epoch 46:  86%|▊| 6/7 [00:00&lt;00:00, 23.48it/s, loss=0.231, v_num=22, val_loss=1.620, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 46: 100%|█| 7/7 [00:00&lt;00:00, 25.78it/s, loss=0.231, v_num=22, val_loss=1.710, train_los
-Epoch 47:  86%|▊| 6/7 [00:00&lt;00:00, 24.64it/s, loss=0.219, v_num=22, val_loss=1.710, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 47: 100%|█| 7/7 [00:00&lt;00:00, 26.87it/s, loss=0.219, v_num=22, val_loss=1.680, train_los
-Epoch 48:  86%|▊| 6/7 [00:00&lt;00:00, 24.89it/s, loss=0.214, v_num=22, val_loss=1.680, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 48: 100%|█| 7/7 [00:00&lt;00:00, 27.18it/s, loss=0.214, v_num=22, val_loss=1.680, train_los
-Epoch 49:  86%|▊| 6/7 [00:00&lt;00:00, 25.21it/s, loss=0.204, v_num=22, val_loss=1.680, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 49: 100%|█| 7/7 [00:00&lt;00:00, 27.55it/s, loss=0.204, v_num=22, val_loss=1.610, train_los
-Epoch 50:  86%|▊| 6/7 [00:00&lt;00:00, 25.10it/s, loss=0.199, v_num=22, val_loss=1.610, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 50: 100%|█| 7/7 [00:00&lt;00:00, 26.92it/s, loss=0.199, v_num=22, val_loss=1.640, train_los
-Epoch 51:  86%|▊| 6/7 [00:00&lt;00:00, 23.71it/s, loss=0.201, v_num=22, val_loss=1.640, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 51: 100%|█| 7/7 [00:00&lt;00:00, 25.87it/s, loss=0.201, v_num=22, val_loss=1.770, train_los
-Epoch 52:  86%|▊| 6/7 [00:00&lt;00:00, 20.20it/s, loss=0.222, v_num=22, val_loss=1.770, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 52: 100%|█| 7/7 [00:00&lt;00:00, 22.08it/s, loss=0.222, v_num=22, val_loss=1.830, train_los
-Epoch 53:  86%|▊| 6/7 [00:00&lt;00:00, 26.20it/s, loss=0.218, v_num=22, val_loss=1.830, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 53: 100%|█| 7/7 [00:00&lt;00:00, 28.51it/s, loss=0.218, v_num=22, val_loss=1.770, train_los
-Epoch 54:  86%|▊| 6/7 [00:00&lt;00:00, 24.64it/s, loss=0.218, v_num=22, val_loss=1.770, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 54: 100%|█| 7/7 [00:00&lt;00:00, 26.97it/s, loss=0.218, v_num=22, val_loss=1.910, train_los
-Epoch 55:  86%|▊| 6/7 [00:00&lt;00:00, 24.34it/s, loss=0.197, v_num=22, val_loss=1.910, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 55: 100%|█| 7/7 [00:00&lt;00:00, 26.56it/s, loss=0.197, v_num=22, val_loss=1.760, train_los
-Epoch 56:  86%|▊| 6/7 [00:00&lt;00:00, 26.20it/s, loss=0.189, v_num=22, val_loss=1.760, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 56: 100%|█| 7/7 [00:00&lt;00:00, 28.39it/s, loss=0.189, v_num=22, val_loss=1.900, train_los
-Epoch 57:  86%|▊| 6/7 [00:00&lt;00:00, 23.95it/s, loss=0.187, v_num=22, val_loss=1.900, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 57: 100%|█| 7/7 [00:00&lt;00:00, 26.11it/s, loss=0.187, v_num=22, val_loss=1.850, train_los
-Epoch 58:  86%|▊| 6/7 [00:00&lt;00:00, 23.71it/s, loss=0.188, v_num=22, val_loss=1.850, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 58: 100%|█| 7/7 [00:00&lt;00:00, 26.02it/s, loss=0.188, v_num=22, val_loss=1.930, train_los
-Epoch 59:  86%|▊| 6/7 [00:00&lt;00:00, 24.49it/s, loss=0.183, v_num=22, val_loss=1.930, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 59: 100%|█| 7/7 [00:00&lt;00:00, 26.66it/s, loss=0.183, v_num=22, val_loss=1.910, train_los
-Epoch 60:  86%|▊| 6/7 [00:00&lt;00:00, 24.34it/s, loss=0.184, v_num=22, val_loss=1.910, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 60: 100%|█| 7/7 [00:00&lt;00:00, 26.56it/s, loss=0.184, v_num=22, val_loss=1.940, train_los
-Epoch 61:  86%|▊| 6/7 [00:00&lt;00:00, 24.04it/s, loss=0.185, v_num=22, val_loss=1.940, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 61: 100%|█| 7/7 [00:00&lt;00:00, 26.36it/s, loss=0.185, v_num=22, val_loss=1.770, train_los
-Epoch 62:  86%|▊| 6/7 [00:00&lt;00:00, 24.29it/s, loss=0.187, v_num=22, val_loss=1.770, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 62: 100%|█| 7/7 [00:00&lt;00:00, 25.97it/s, loss=0.187, v_num=22, val_loss=1.890, train_los
-Epoch 63:  86%|▊| 6/7 [00:00&lt;00:00, 24.09it/s, loss=0.187, v_num=22, val_loss=1.890, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 63: 100%|█| 7/7 [00:00&lt;00:00, 26.31it/s, loss=0.187, v_num=22, val_loss=1.890, train_los
-Epoch 64:  86%|▊| 6/7 [00:00&lt;00:00, 23.48it/s, loss=0.184, v_num=22, val_loss=1.890, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 64: 100%|█| 7/7 [00:00&lt;00:00, 25.78it/s, loss=0.184, v_num=22, val_loss=1.820, train_los
-Epoch 65:  86%|▊| 6/7 [00:00&lt;00:00, 23.85it/s, loss=0.188, v_num=22, val_loss=1.820, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 65: 100%|█| 7/7 [00:00&lt;00:00, 26.16it/s, loss=0.188, v_num=22, val_loss=1.830, train_los
-Epoch 66:  86%|▊| 6/7 [00:00&lt;00:00, 23.34it/s, loss=0.183, v_num=22, val_loss=1.830, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 66: 100%|█| 7/7 [00:00&lt;00:00, 25.59it/s, loss=0.183, v_num=22, val_loss=1.950, train_los
-Epoch 67:  86%|▊| 6/7 [00:00&lt;00:00, 24.94it/s, loss=0.191, v_num=22, val_loss=1.950, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 67: 100%|█| 7/7 [00:00&lt;00:00, 27.02it/s, loss=0.191, v_num=22, val_loss=1.900, train_los
-Epoch 68:  86%|▊| 6/7 [00:00&lt;00:00, 23.57it/s, loss=0.187, v_num=22, val_loss=1.900, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 68: 100%|█| 7/7 [00:00&lt;00:00, 25.78it/s, loss=0.187, v_num=22, val_loss=1.890, train_los
-Epoch 69:  86%|▊| 6/7 [00:00&lt;00:00, 23.81it/s, loss=0.184, v_num=22, val_loss=1.890, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 69: 100%|█| 7/7 [00:00&lt;00:00, 26.02it/s, loss=0.184, v_num=22, val_loss=1.880, train_los
-Epoch 70:  86%|▊| 6/7 [00:00&lt;00:00, 25.00it/s, loss=0.175, v_num=22, val_loss=1.880, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 70: 100%|█| 7/7 [00:00&lt;00:00, 27.23it/s, loss=0.175, v_num=22, val_loss=1.980, train_los
-Epoch 71:  86%|▊| 6/7 [00:00&lt;00:00, 24.74it/s, loss=0.186, v_num=22, val_loss=1.980, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 71: 100%|█| 7/7 [00:00&lt;00:00, 27.13it/s, loss=0.186, v_num=22, val_loss=2.020, train_los
-Epoch 72:  86%|▊| 6/7 [00:00&lt;00:00, 22.60it/s, loss=0.186, v_num=22, val_loss=2.020, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 72: 100%|█| 7/7 [00:00&lt;00:00, 24.56it/s, loss=0.186, v_num=22, val_loss=1.890, train_los
-Epoch 73:  86%|▊| 6/7 [00:00&lt;00:00, 22.64it/s, loss=0.186, v_num=22, val_loss=1.890, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 73: 100%|█| 7/7 [00:00&lt;00:00, 24.56it/s, loss=0.186, v_num=22, val_loss=2.030, train_los
-Epoch 74:  86%|▊| 6/7 [00:00&lt;00:00, 24.94it/s, loss=0.173, v_num=22, val_loss=2.030, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 74: 100%|█| 7/7 [00:00&lt;00:00, 27.34it/s, loss=0.173, v_num=22, val_loss=1.920, train_los
-Epoch 75:  86%|▊| 6/7 [00:00&lt;00:00, 22.77it/s, loss=0.173, v_num=22, val_loss=1.920, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 75: 100%|█| 7/7 [00:00&lt;00:00, 25.04it/s, loss=0.173, v_num=22, val_loss=1.780, train_los
-Epoch 76:  86%|▊| 6/7 [00:00&lt;00:00, 21.58it/s, loss=0.169, v_num=22, val_loss=1.780, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 76: 100%|█| 7/7 [00:00&lt;00:00, 23.10it/s, loss=0.169, v_num=22, val_loss=2.080, train_los
-Epoch 77:  86%|▊| 6/7 [00:00&lt;00:00, 24.94it/s, loss=0.175, v_num=22, val_loss=2.080, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 77: 100%|█| 7/7 [00:00&lt;00:00, 27.34it/s, loss=0.175, v_num=22, val_loss=2.040, train_los
-Epoch 78:  86%|▊| 6/7 [00:00&lt;00:00, 23.62it/s, loss=0.175, v_num=22, val_loss=2.040, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 78: 100%|█| 7/7 [00:00&lt;00:00, 25.68it/s, loss=0.175, v_num=22, val_loss=1.880, train_los
-Epoch 79:  86%|▊| 6/7 [00:00&lt;00:00, 24.64it/s, loss=0.182, v_num=22, val_loss=1.880, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 79: 100%|█| 7/7 [00:00&lt;00:00, 26.92it/s, loss=0.182, v_num=22, val_loss=1.900, train_los
-Epoch 80:  86%|▊| 6/7 [00:00&lt;00:00, 23.39it/s, loss=0.174, v_num=22, val_loss=1.900, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 80: 100%|█| 7/7 [00:00&lt;00:00, 25.54it/s, loss=0.174, v_num=22, val_loss=2.020, train_los
-Epoch 81:  86%|▊| 6/7 [00:00&lt;00:00, 24.09it/s, loss=0.171, v_num=22, val_loss=2.020, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 81: 100%|█| 7/7 [00:00&lt;00:00, 26.36it/s, loss=0.171, v_num=22, val_loss=2.060, train_los
-Epoch 82:  86%|▊| 6/7 [00:00&lt;00:00, 23.76it/s, loss=0.161, v_num=22, val_loss=2.060, train_los
-Validating: 0it [00:00, ?it/s]
-Epoch 82: 100%|█| 7/7 [00:00&lt;00:00, 25.83it/s, loss=0.161, v_num=22, val_loss=2.060, train_los
-Epoch 82: 100%|█| 7/7 [00:00&lt;00:00, 23.72it/s, loss=0.161, v_num=22, val_loss=2.060, train_los
-tensor([[[417.0000],
-         [391.0000],
-         [419.0000],
-         [461.0000],
-         [472.0000],
-         [535.0000],
-         [622.0000],
-         [606.0000],
-         [508.0000],
-         [461.0000],
-         [390.0000],
-         [432.0000]],
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">RuntimeError</span>                              Traceback (most recent call last)
+Input <span class="ansi-green-intense-fg ansi-bold">In [9]</span>, in <span class="ansi-cyan-fg">&lt;cell line: 1&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span> <span class="ansi-yellow-bg">trainer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">fit</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">train_dataloader</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">train_dataloader</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">val_dataloaders</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">val_dataloader</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># (given that we use early stopping, this is not necessarily the last epoch)</span>
+<span class="ansi-green-fg">      6</span> best_model_path <span style="color: rgb(98,98,98)">=</span> trainer<span style="color: rgb(98,98,98)">.</span>checkpoint_callback<span style="color: rgb(98,98,98)">.</span>best_model_path
 
-        [[242.2041],
-         [248.4361],
-         [291.6753],
-         [285.4878],
-         [300.7017],
-         [335.5658],
-         [392.4390],
-         [390.4636],
-         [305.8913],
-         [259.6950],
-         [234.0442],
-         [245.8051]]], dtype=torch.float64)
-MAE is: tensor(181.7993, dtype=torch.float64)
-</pre>
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:740</span>, in <span class="ansi-cyan-fg">Trainer.fit</span><span class="ansi-blue-intense-fg ansi-bold">(self, model, train_dataloaders, val_dataloaders, datamodule, train_dataloader, ckpt_path)</span>
+<span class="ansi-green-fg">    735</span>     rank_zero_deprecation(
+<span class="ansi-green-fg">    736</span>         <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">`trainer.fit(train_dataloader)` is deprecated in v1.4 and will be removed in v1.6.</span><span style="color: rgb(175,0,0)">&#34;</span>
+<span class="ansi-green-fg">    737</span>         <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)"> Use `trainer.fit(train_dataloaders)` instead. HINT: added </span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">s</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">&#34;</span>
+<span class="ansi-green-fg">    738</span>     )
+<span class="ansi-green-fg">    739</span>     train_dataloaders <span style="color: rgb(98,98,98)">=</span> train_dataloader
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 740</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_call_and_handle_interrupt</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    741</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_fit_impl</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">train_dataloaders</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">val_dataloaders</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">datamodule</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">ckpt_path</span>
+<span class="ansi-green-fg">    742</span> <span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:685</span>, in <span class="ansi-cyan-fg">Trainer._call_and_handle_interrupt</span><span class="ansi-blue-intense-fg ansi-bold">(self, trainer_fn, *args, **kwargs)</span>
+<span class="ansi-green-fg">    675</span> <span style="color: rgb(175,0,0)">r</span><span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    676</span> <span style="color: rgb(175,0,0)">Error handling, intended to be used only for main trainer function entry points (fit, validate, test, predict)</span>
+<span class="ansi-green-fg">    677</span> <span style="color: rgb(175,0,0)">as all errors should funnel through them</span>
+<span class="ansi-green-intense-fg ansi-bold">   (...)</span>
+<span class="ansi-green-fg">    682</span> <span style="color: rgb(175,0,0)">    **kwargs: keyword arguments to be passed to `trainer_fn`</span>
+<span class="ansi-green-fg">    683</span> <span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    684</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 685</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> trainer_fn(<span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    686</span> <span style="color: rgb(95,135,135)"># TODO: treat KeyboardInterrupt as BaseException (delete the code below) in v1.7</span>
+<span class="ansi-green-fg">    687</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">KeyboardInterrupt</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> exception:
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:777</span>, in <span class="ansi-cyan-fg">Trainer._fit_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, model, train_dataloaders, val_dataloaders, datamodule, ckpt_path)</span>
+<span class="ansi-green-fg">    775</span> <span style="color: rgb(95,135,135)"># TODO: ckpt_path only in v1.7</span>
+<span class="ansi-green-fg">    776</span> ckpt_path <span style="color: rgb(98,98,98)">=</span> ckpt_path <span class="ansi-bold" style="color: rgb(175,0,255)">or</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>resume_from_checkpoint
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 777</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_run</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">ckpt_path</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">ckpt_path</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    779</span> <span class="ansi-bold" style="color: rgb(0,135,0)">assert</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>state<span style="color: rgb(98,98,98)">.</span>stopped
+<span class="ansi-green-fg">    780</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>training <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:1199</span>, in <span class="ansi-cyan-fg">Trainer._run</span><span class="ansi-blue-intense-fg ansi-bold">(self, model, ckpt_path)</span>
+<span class="ansi-green-fg">   1196</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>checkpoint_connector<span style="color: rgb(98,98,98)">.</span>resume_end()
+<span class="ansi-green-fg">   1198</span> <span style="color: rgb(95,135,135)"># dispatch `start_training` or `start_evaluating` or `start_predicting`</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1199</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_dispatch</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1201</span> <span style="color: rgb(95,135,135)"># plugin will finalized fitting (e.g. ddp_spawn will load trained model)</span>
+<span class="ansi-green-fg">   1202</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_post_dispatch()
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:1279</span>, in <span class="ansi-cyan-fg">Trainer._dispatch</span><span class="ansi-blue-intense-fg ansi-bold">(self)</span>
+<span class="ansi-green-fg">   1277</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>training_type_plugin<span style="color: rgb(98,98,98)">.</span>start_predicting(<span style="color: rgb(0,135,0)">self</span>)
+<span class="ansi-green-fg">   1278</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1279</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">training_type_plugin</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">start_training</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\plugins\training_type\training_type_plugin.py:202</span>, in <span class="ansi-cyan-fg">TrainingTypePlugin.start_training</span><span class="ansi-blue-intense-fg ansi-bold">(self, trainer)</span>
+<span class="ansi-green-fg">    200</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">start_training</span>(<span style="color: rgb(0,135,0)">self</span>, trainer: <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">pl.Trainer</span><span style="color: rgb(175,0,0)">&#34;</span>) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">    201</span>     <span style="color: rgb(95,135,135)"># double dispatch to initiate the training loop</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 202</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_results <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">trainer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">run_stage</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:1289</span>, in <span class="ansi-cyan-fg">Trainer.run_stage</span><span class="ansi-blue-intense-fg ansi-bold">(self)</span>
+<span class="ansi-green-fg">   1287</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>predicting:
+<span class="ansi-green-fg">   1288</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_run_predict()
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1289</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_run_train</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:1311</span>, in <span class="ansi-cyan-fg">Trainer._run_train</span><span class="ansi-blue-intense-fg ansi-bold">(self)</span>
+<span class="ansi-green-fg">   1308</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>is_global_zero <span class="ansi-bold" style="color: rgb(175,0,255)">and</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>progress_bar_callback <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">   1309</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>progress_bar_callback<span style="color: rgb(98,98,98)">.</span>disable()
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1311</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_run_sanity_check</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">lightning_module</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1313</span> <span style="color: rgb(95,135,135)"># enable train mode</span>
+<span class="ansi-green-fg">   1314</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>model<span style="color: rgb(98,98,98)">.</span>train()
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\trainer\trainer.py:1375</span>, in <span class="ansi-cyan-fg">Trainer._run_sanity_check</span><span class="ansi-blue-intense-fg ansi-bold">(self, ref_model)</span>
+<span class="ansi-green-fg">   1373</span> <span style="color: rgb(95,135,135)"># run eval step</span>
+<span class="ansi-green-fg">   1374</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> torch<span style="color: rgb(98,98,98)">.</span>no_grad():
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1375</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_evaluation_loop</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">run</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1377</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>call_hook(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">on_sanity_check_end</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-fg">   1379</span> <span style="color: rgb(95,135,135)"># reset logger connector</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\loops\base.py:145</span>, in <span class="ansi-cyan-fg">Loop.run</span><span class="ansi-blue-intense-fg ansi-bold">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg">    143</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">    144</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>on_advance_start(<span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 145</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>advance(<span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    146</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>on_advance_end()
+<span class="ansi-green-fg">    147</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>restarting <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\loops\dataloader\evaluation_loop.py:110</span>, in <span class="ansi-cyan-fg">EvaluationLoop.advance</span><span class="ansi-blue-intense-fg ansi-bold">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg">    105</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>data_fetcher <span style="color: rgb(98,98,98)">=</span> dataloader <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>trainer<span style="color: rgb(98,98,98)">.</span>_data_connector<span style="color: rgb(98,98,98)">.</span>get_profiled_dataloader(
+<span class="ansi-green-fg">    106</span>     dataloader, dataloader_idx<span style="color: rgb(98,98,98)">=</span>dataloader_idx
+<span class="ansi-green-fg">    107</span> )
+<span class="ansi-green-fg">    108</span> dl_max_batches <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_max_batches[dataloader_idx]
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 110</span> dl_outputs <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">epoch_loop</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">run</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">dataloader</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dataloader_idx</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dl_max_batches</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">num_dataloaders</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    112</span> <span style="color: rgb(95,135,135)"># store batch level output per dataloader</span>
+<span class="ansi-green-fg">    113</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>outputs<span style="color: rgb(98,98,98)">.</span>append(dl_outputs)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\loops\base.py:145</span>, in <span class="ansi-cyan-fg">Loop.run</span><span class="ansi-blue-intense-fg ansi-bold">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg">    143</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">    144</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>on_advance_start(<span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 145</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>advance(<span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    146</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>on_advance_end()
+<span class="ansi-green-fg">    147</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>restarting <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\loops\epoch\evaluation_epoch_loop.py:122</span>, in <span class="ansi-cyan-fg">EvaluationEpochLoop.advance</span><span class="ansi-blue-intense-fg ansi-bold">(self, data_fetcher, dataloader_idx, dl_max_batches, num_dataloaders)</span>
+<span class="ansi-green-fg">    120</span> <span style="color: rgb(95,135,135)"># lightning module methods</span>
+<span class="ansi-green-fg">    121</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>trainer<span style="color: rgb(98,98,98)">.</span>profiler<span style="color: rgb(98,98,98)">.</span>profile(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">evaluation_step_and_end</span><span style="color: rgb(175,0,0)">&#34;</span>):
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 122</span>     output <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">_evaluation_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">batch</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">batch_idx</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dataloader_idx</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    123</span>     output <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_evaluation_step_end(output)
+<span class="ansi-green-fg">    125</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>batch_progress<span style="color: rgb(98,98,98)">.</span>increment_processed()
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\loops\epoch\evaluation_epoch_loop.py:217</span>, in <span class="ansi-cyan-fg">EvaluationEpochLoop._evaluation_step</span><span class="ansi-blue-intense-fg ansi-bold">(self, batch, batch_idx, dataloader_idx)</span>
+<span class="ansi-green-fg">    215</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>trainer<span style="color: rgb(98,98,98)">.</span>lightning_module<span style="color: rgb(98,98,98)">.</span>_current_fx_name <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">validation_step</span><span style="color: rgb(175,0,0)">&#34;</span>
+<span class="ansi-green-fg">    216</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>trainer<span style="color: rgb(98,98,98)">.</span>profiler<span style="color: rgb(98,98,98)">.</span>profile(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">validation_step</span><span style="color: rgb(175,0,0)">&#34;</span>):
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 217</span>         output <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">trainer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">accelerator</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">validation_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">step_kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    219</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> output
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\accelerators\accelerator.py:239</span>, in <span class="ansi-cyan-fg">Accelerator.validation_step</span><span class="ansi-blue-intense-fg ansi-bold">(self, step_kwargs)</span>
+<span class="ansi-green-fg">    234</span> <span style="color: rgb(175,0,0)">&#34;&#34;&#34;The actual validation step.</span>
+<span class="ansi-green-fg">    235</span> 
+<span class="ansi-green-fg">    236</span> <span style="color: rgb(175,0,0)">See :meth:`~pytorch_lightning.core.lightning.LightningModule.validation_step` for more details</span>
+<span class="ansi-green-fg">    237</span> <span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    238</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>precision_plugin<span style="color: rgb(98,98,98)">.</span>val_step_context():
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 239</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">training_type_plugin</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">validation_step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">step_kwargs</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\plugins\training_type\training_type_plugin.py:219</span>, in <span class="ansi-cyan-fg">TrainingTypePlugin.validation_step</span><span class="ansi-blue-intense-fg ansi-bold">(self, *args, **kwargs)</span>
+<span class="ansi-green-fg">    218</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">validation_step</span>(<span style="color: rgb(0,135,0)">self</span>, <span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs):
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 219</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>model<span style="color: rgb(98,98,98)">.</span>validation_step(<span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\deepts_forecasting\models\base_model.py:78</span>, in <span class="ansi-cyan-fg">BaseModel.validation_step</span><span class="ansi-blue-intense-fg ansi-bold">(self, batch, batch_idx)</span>
+<span class="ansi-green-fg">     76</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">validation_step</span>(<span style="color: rgb(0,135,0)">self</span>, batch, batch_idx):
+<span class="ansi-green-fg">     77</span>     x, y <span style="color: rgb(98,98,98)">=</span> batch
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 78</span>     log, _ <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">step</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">y</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     79</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>log(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">val_loss</span><span style="color: rgb(175,0,0)">&#34;</span>, log[<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">loss</span><span style="color: rgb(175,0,0)">&#34;</span>], on_step<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">False</span>, on_epoch<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>, prog_bar<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">     80</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> log
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\deepts_forecasting\models\base_model.py:100</span>, in <span class="ansi-cyan-fg">BaseModel.step</span><span class="ansi-blue-intense-fg ansi-bold">(self, x, y, **kwargs)</span>
+<span class="ansi-green-fg">     95</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">step</span>(<span style="color: rgb(0,135,0)">self</span>, x, y, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs):
+<span class="ansi-green-fg">     96</span>     <span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">     97</span> <span style="color: rgb(175,0,0)">    Run for each train/val step</span>
+<span class="ansi-green-fg">     98</span> <span style="color: rgb(175,0,0)">    Returns:</span>
+<span class="ansi-green-fg">     99</span> <span style="color: rgb(175,0,0)">    &#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 100</span>     out <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span>(x, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    102</span>     <span style="color: rgb(95,135,135)"># calculate loss</span>
+<span class="ansi-green-fg">    103</span>     loss <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>loss(out, y)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\torch\nn\modules\module.py:889</span>, in <span class="ansi-cyan-fg">Module._call_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, *input, **kwargs)</span>
+<span class="ansi-green-fg">    887</span>     result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_slow_forward(<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(0,135,0)">input</span>, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    888</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 889</span>     result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>forward(<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(0,135,0)">input</span>, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    890</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> hook <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> itertools<span style="color: rgb(98,98,98)">.</span>chain(
+<span class="ansi-green-fg">    891</span>         _global_forward_hooks<span style="color: rgb(98,98,98)">.</span>values(),
+<span class="ansi-green-fg">    892</span>         <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_forward_hooks<span style="color: rgb(98,98,98)">.</span>values()):
+<span class="ansi-green-fg">    893</span>     hook_result <span style="color: rgb(98,98,98)">=</span> hook(<span style="color: rgb(0,135,0)">self</span>, <span style="color: rgb(0,135,0)">input</span>, result)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\deepts_forecasting\models\autoformer\__init__.py:267</span>, in <span class="ansi-cyan-fg">Autoformer.forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, x, enc_self_mask, dec_self_mask, dec_enc_mask)</span>
+<span class="ansi-green-fg">    266</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">forward</span>(<span style="color: rgb(0,135,0)">self</span>, x, enc_self_mask<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, dec_self_mask<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, dec_enc_mask<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">None</span>):
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 267</span>     memory, seasonal_init, trend_init <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">encode</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    268</span>     out <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>decode(x, memory, seasonal_init, trend_init)
+<span class="ansi-green-fg">    269</span>     out <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>out_linear(out)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\deepts_forecasting\models\autoformer\__init__.py:207</span>, in <span class="ansi-cyan-fg">Autoformer.encode</span><span class="ansi-blue-intense-fg ansi-bold">(self, x)</span>
+<span class="ansi-green-fg">    201</span> <span style="color: rgb(95,135,135)"># &#39;_TimeSeriesDataset&#39; stores time series in the</span>
+<span class="ansi-green-fg">    202</span> <span style="color: rgb(95,135,135)"># (batch_size, seq_length, input_size) format. PyTorch&#39;s nn.Transformer</span>
+<span class="ansi-green-fg">    203</span> <span style="color: rgb(95,135,135)"># module needs it the (seq_length, batch_size, input_size) format.</span>
+<span class="ansi-green-fg">    205</span> input_vector <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>construct_input_vector(x[<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">encoder_cat</span><span style="color: rgb(175,0,0)">&#34;</span>], x[<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">encoder_cont</span><span style="color: rgb(175,0,0)">&#34;</span>])
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 207</span> seasonal_init, trend_init <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">decomp</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#34;</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">encoder_cont</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#34;</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    208</span> src <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>encoder_input_linear(input_vector)
+<span class="ansi-green-fg">    209</span> memory <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>encoder(src)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\torch\nn\modules\module.py:889</span>, in <span class="ansi-cyan-fg">Module._call_impl</span><span class="ansi-blue-intense-fg ansi-bold">(self, *input, **kwargs)</span>
+<span class="ansi-green-fg">    887</span>     result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_slow_forward(<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(0,135,0)">input</span>, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    888</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 889</span>     result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>forward(<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(0,135,0)">input</span>, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs)
+<span class="ansi-green-fg">    890</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> hook <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> itertools<span style="color: rgb(98,98,98)">.</span>chain(
+<span class="ansi-green-fg">    891</span>         _global_forward_hooks<span style="color: rgb(98,98,98)">.</span>values(),
+<span class="ansi-green-fg">    892</span>         <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_forward_hooks<span style="color: rgb(98,98,98)">.</span>values()):
+<span class="ansi-green-fg">    893</span>     hook_result <span style="color: rgb(98,98,98)">=</span> hook(<span style="color: rgb(0,135,0)">self</span>, <span style="color: rgb(0,135,0)">input</span>, result)
+
+File <span class="ansi-green-intense-fg ansi-bold">D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\deepts_forecasting\models\autoformer\sub_module.py:54</span>, in <span class="ansi-cyan-fg">series_decomp.forward</span><span class="ansi-blue-intense-fg ansi-bold">(self, x)</span>
+<span class="ansi-green-fg">     52</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">forward</span>(<span style="color: rgb(0,135,0)">self</span>, x):
+<span class="ansi-green-fg">     53</span>     moving_mean <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>moving_avg(x)
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 54</span>     res <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">x</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">-</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">moving_mean</span>
+<span class="ansi-green-fg">     55</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res, moving_mean
+
+<span class="ansi-red-intense-fg ansi-bold">RuntimeError</span>: The size of tensor a (18) must match the size of tensor b (17) at non-singleton dimension 1</pre>
 </div>
 </div>
 
@@ -2969,7 +2919,7 @@ MAE is: tensor(181.7993, dtype=torch.float64)
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../transformer/" class="md-footer__link md-footer__link--prev" aria-label="Previous: transformer model" rel="prev">
+        <a href="../informer/" class="md-footer__link md-footer__link--prev" aria-label="Previous: informer mode" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2978,20 +2928,20 @@ MAE is: tensor(181.7993, dtype=torch.float64)
               <span class="md-footer__direction">
                 Previous
               </span>
-              transformer model
+              informer mode
             </div>
           </div>
         </a>
       
       
         
-        <a href="../autoformer/" class="md-footer__link md-footer__link--next" aria-label="Next: autoformer model" rel="next">
+        <a href="../../contributing/" class="md-footer__link md-footer__link--next" aria-label="Next: contributing" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              autoformer model
+              contributing
             </div>
           </div>
           <div class="md-footer__button md-icon">
