@@ -421,7 +421,7 @@ class TimeSeriesDataSet(Dataset):
                 e.g. useful for validation set. Defaults to False.
             predict (bool, optional): If to predict the decoder length on the last entries in the
                 time index (i.e. one prediction per group only). Defaults to False.
-            **kwargs: keyword arguments overriding parameters in the original dataset
+            **update_kwargs: keyword arguments overriding parameters in the original dataset
 
         Returns:
             TimeSeriesDataSet: new dataset
@@ -498,6 +498,29 @@ class TimeSeriesDataSet(Dataset):
         if sum(data.groupby(self.group_ids + [self.time_idx]).size() > 1) > 0:
             raise ValueError(
                 "Data Error: Multiple rows with the same group id and time index exist"
+            )
+
+        # check for numeric categoricals which can cause hick-ups in logging in tensorboard
+        category_columns = data.head(1).select_dtypes("category").columns
+        object_columns = data.head(1).select_dtypes(object).columns
+        for name in self.flat_categoricals:
+            if name not in data.columns:
+                raise KeyError(f"variable {name} specified but not found in data")
+            if not (
+                name in object_columns
+                or (
+                    name in category_columns
+                    and data[name].cat.categories.dtype.kind not in "bifc"
+                )
+            ):
+                raise ValueError(
+                    f"Data type of category {name} was found to be numeric - use a string type / categorified string"
+                )
+        # check for "." in column names
+        columns_with_dot = data.columns[data.columns.str.contains(r"\.")]
+        if len(columns_with_dot) > 0:
+            raise ValueError(
+                f"column names must not contain '.' characters. Names {columns_with_dot.tolist()} are invalid"
             )
 
     def _preprocess_data(self, data: pd.DataFrame) -> pd.DataFrame:

@@ -11,9 +11,10 @@ TO-DO:
 import inspect
 from abc import ABC
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
-
+import numpy as np
 import pandas as pd
 import torch
+import matplotlib.pyplot as plt
 from deepts_forecasting.utils.data import TimeSeriesDataSet
 from pytorch_lightning import LightningModule
 from pytorch_lightning.utilities.parsing import get_init_args
@@ -222,7 +223,8 @@ class BaseModel(LightningModule, ABC):
         data: Union[DataLoader, pd.DataFrame, TimeSeriesDataSet],
         batch_size: int = 32,
         num_workers: int = 0,
-        return_index: bool = True,
+        return_index: bool = False,
+        return_target: bool = False,
         **kwargs,
     ):
         # convert to dataloader
@@ -244,8 +246,9 @@ class BaseModel(LightningModule, ABC):
         self.eval()  # no dropout, etc. no gradients
         output = []
         index = []
+        raw_y = []
         with torch.no_grad():
-            for x, _ in dataloader:
+            for x, y in dataloader:
                 # move data to appropriate device
                 # if x != self.device:
                 #     x = x.to(self.device)
@@ -257,9 +260,54 @@ class BaseModel(LightningModule, ABC):
                 output.append(out)
                 if return_index:
                     index.append(dataloader.dataset.x_to_index(x))
+                if return_target:
+                    target = torch.cat([x["encoder_target"], y], dim=1)
+                    raw_y.append(
+                        self.transform_output(
+                            prediction=target, target_scale=x["target_scale"]
+                        )
+                    )
+
         if return_index:
             x_index = pd.concat(index, axis=0, ignore_index=True)
-        return torch.cat(output), x_index
+            if return_target:
+                return torch.cat(output), x_index, raw_y[0]
+            else:
+                return torch.cat(output), x_index
+
+        else:
+            if return_target:
+                return torch.cat(output), raw_y[0]
+            else:
+                return torch.cat(output)
+
+    def plot_prediction(
+        self,
+        raw_target: torch.Tensor,
+        prediction: torch.Tensor,
+        idx: int = 0,
+    ):
+        """
+
+        Args:
+            raw_target: observed y
+            prediction: out of model
+            idx: index of prediction to plot
+
+        Returns:
+
+        """
+
+        raw_target = raw_target[idx]
+        prediction = prediction[idx]
+        n_pred = raw_target.shape[0]
+        x_obs = np.arange(n_pred)
+        x_pred = np.arange(n_pred - prediction.shape[0], n_pred)
+        # create figure
+        fig, ax = plt.subplots()
+        ax.plot(x_obs, raw_target, label="observed")
+        ax.plot(x_pred, prediction, label="predicted")
+        fig.legend()
 
 
 class BaseModelWithCovariates(BaseModel):

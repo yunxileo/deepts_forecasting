@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import Dict, List, Tuple, Type, Union
 
 import numpy as np
@@ -59,6 +59,7 @@ class Seq2SeqNetwork(BaseModelWithCovariates, ABC):
         cell_type: str = "LSTM",
         **kwargs,
     ):
+        self.embeddings = None
         if loss is None:
             loss = MAE()
         self.save_hyperparameters()
@@ -113,7 +114,6 @@ class Seq2SeqNetwork(BaseModelWithCovariates, ABC):
             )
 
     def construct_input_vector(self, x_cat, x_cont):
-
         # create input vector
         if len(self.hparams.x_categoricals) > 0:
             input_vectors = {}
@@ -156,8 +156,6 @@ class Seq2SeqNetwork(BaseModelWithCovariates, ABC):
         decoder_output, hidden_state = self.decode_rnn(
             decoder_input_vector, hidden_state
         )
-        # output = self.transform_output(decoder_output,
-        #                                target_scale=target_scale)
         return decoder_output
 
     def forward(
@@ -169,7 +167,6 @@ class Seq2SeqNetwork(BaseModelWithCovariates, ABC):
         _, hidden_state = self.encode(x)
         output = self.decode(
             x,
-            # target_scale=x["target_scale"],
             hidden_state=hidden_state,
         )
 
