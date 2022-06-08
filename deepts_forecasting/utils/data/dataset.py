@@ -295,7 +295,7 @@ class TimeSeriesDataSet(Dataset):
         Mapping from categorical variables to variables in input data.
 
         Returns:
-            Dict[str, str]: dictionary mapping from :py:meth:`~categorical` to :py:meth:`~flat_categoricals`.
+            Dict[str, str]: dictionary mapping from meth:`~categorical` to meth:`~flat_categoricals`.
         """
         groups = {}
         for group_name, sublist in self.variable_groups.items():
@@ -386,7 +386,7 @@ class TimeSeriesDataSet(Dataset):
 
     def get_parameters(self) -> Dict[str, Any]:
         """
-        Get parameters that can be used with :py:meth:`~from_parameters` to create a new dataset with the same scalers.
+        Get parameters that can be used with meth:`~from_parameters` to create a new dataset with the same scalers.
 
         Returns:
             Dict[str, Any]: dictionary of parameters
@@ -412,7 +412,7 @@ class TimeSeriesDataSet(Dataset):
         """
         Generate dataset with different underlying data but same variable encoders and scalers, etc.
 
-        Calls :py:meth:`~from_parameters` under the hood.
+        Calls meth:`~from_parameters` under the hood.
 
         Args:
             dataset (TimeSeriesDataSet): dataset from which to copy parameters
@@ -1145,67 +1145,67 @@ class TimeSeriesDataSet(Dataset):
         return index
 
 
-if __name__ == "__main__":
-
-    def main():
-        data_with_covariates = pd.DataFrame(
-            dict(
-                # as before
-                value=np.random.rand(60),
-                group=np.repeat(np.arange(3), 20),
-                time_idx=np.tile(np.arange(20), 3),
-                # now adding covariates
-                categorical_covariate=np.random.choice(["a", "b"], size=60),
-                real_covariate=np.random.rand(60),
-            )
-        ).astype(
-            dict(group=str)
-        )  # categorical covariates have to be of string type
-
-        # print(test_data_with_covariates.head())
-
-        training_cutoff = data_with_covariates["time_idx"].max() - 6
-        # create the dataset from the pandas dataframe
-        rawdata = data_with_covariates[lambda x: x.time_idx <= training_cutoff]
-
-        dataset = TimeSeriesDataSet(
-            data=rawdata,
-            group_ids=["group"],
-            target="value",
-            time_idx="time_idx",
-            max_encoder_length=4,
-            min_encoder_length=4,
-            max_prediction_length=2,
-            min_prediction_length=2,
-            static_reals=[],
-            static_categoricals=["group"],
-            time_varying_known_reals=["real_covariate"],
-            time_varying_unknown_reals=["value"],
-            time_varying_known_categoricals=["categorical_covariate"],
-            time_varying_unknown_categoricals=[],
-            target_normalizer=TorchNormalizer(method="standard")
-            # target_normalizer=GroupNormalizer(groups=["group"], method="standard",
-            #                                   transformation=None)
-        )
-
-        # print(dataset.data)
-        # print(dataset.scalers)
-        print(dataset.get_parameters())
-        train_dataloader = DataLoader(
-            dataset, batch_size=16, shuffle=False, drop_last=True
-        )
-        # validation = TimeSeriesDataSet.from_dataset(
-        #     dataset,
-        #     data_with_covariates[lambda x: x.time_idx > training_cutoff],
-        #     predict=True,
-        #     stop_randomization=False,
-        # )
-        # val_dataloader = DataLoader(validation, batch_size=2, shuffle=False, drop_last=False)
-        x, y = next(iter(train_dataloader))
-        print(x)
-        y_rescale = dataset.target_normalizer(
-            dict(prediction=y, target_scale=x["target_scale"])
-        )
-        y_index = dataset.x_to_index(x)
-        print(y_rescale)
-        print(y_index)
+# if __name__ == "__main__":
+#
+#     def main():
+#         data_with_covariates = pd.DataFrame(
+#             dict(
+#                 # as before
+#                 value=np.random.rand(60),
+#                 group=np.repeat(np.arange(3), 20),
+#                 time_idx=np.tile(np.arange(20), 3),
+#                 # now adding covariates
+#                 categorical_covariate=np.random.choice(["a", "b"], size=60),
+#                 real_covariate=np.random.rand(60),
+#             )
+#         ).astype(
+#             dict(group=str)
+#         )  # categorical covariates have to be of string type
+#
+#         # print(test_data_with_covariates.head())
+#
+#         training_cutoff = data_with_covariates["time_idx"].max() - 6
+#         # create the dataset from the pandas dataframe
+#         rawdata = data_with_covariates[lambda x: x.time_idx <= training_cutoff]
+#
+#         dataset = TimeSeriesDataSet(
+#             data=rawdata,
+#             group_ids=["group"],
+#             target="value",
+#             time_idx="time_idx",
+#             max_encoder_length=4,
+#             min_encoder_length=4,
+#             max_prediction_length=2,
+#             min_prediction_length=2,
+#             static_reals=[],
+#             static_categoricals=["group"],
+#             time_varying_known_reals=["real_covariate"],
+#             time_varying_unknown_reals=["value"],
+#             time_varying_known_categoricals=["categorical_covariate"],
+#             time_varying_unknown_categoricals=[],
+#             target_normalizer=TorchNormalizer(method="standard")
+#             # target_normalizer=GroupNormalizer(groups=["group"], method="standard",
+#             #                                   transformation=None)
+#         )
+#
+#         # print(dataset.data)
+#         # print(dataset.scalers)
+#         print(dataset.get_parameters())
+#         train_dataloader = DataLoader(
+#             dataset, batch_size=16, shuffle=False, drop_last=True
+#         )
+#         # validation = TimeSeriesDataSet.from_dataset(
+#         #     dataset,
+#         #     data_with_covariates[lambda x: x.time_idx > training_cutoff],
+#         #     predict=True,
+#         #     stop_randomization=False,
+#         # )
+#         # val_dataloader = DataLoader(validation, batch_size=2, shuffle=False, drop_last=False)
+#         x, y = next(iter(train_dataloader))
+#         print(x)
+#         y_rescale = dataset.target_normalizer(
+#             dict(prediction=y, target_scale=x["target_scale"])
+#         )
+#         y_index = dataset.x_to_index(x)
+#         print(y_rescale)
+#         print(y_index)
