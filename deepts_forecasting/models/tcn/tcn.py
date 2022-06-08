@@ -47,14 +47,14 @@ class ResidualBlock(nn.Module):
 
         Inputs
         ------
-        x of shape `(batch_size, in_dimension, input_chunk_length)`
+        x of shape `(batch_size, in_dimension, input_length)`
             Tensor containing the features of the input sequence.
             in_dimension is equal to `input_size` if this is the first residual block,
             in all other cases it is equal to `num_filters`.
 
         Outputs
         -------
-        y of shape `(batch_size, out_dimension, input_chunk_length)`
+        y of shape `(batch_size, out_dimension, input_length)`
             Tensor containing the output sequence of the residual block.
             out_dimension is equal to `output_size` if this is the last residual block,
             in all other cases it is equal to `num_filters`.
@@ -188,19 +188,14 @@ class TCNModel(BaseModel, ABC):
         if num_layers is None and dilation_base > 1:
             num_layers = math.ceil(
                 math.log(
-                    (self.input_chunk_length - 1)
-                    * (dilation_base - 1)
-                    / (kernel_size - 1)
-                    / 2
+                    (input_length - 1) * (dilation_base - 1) / (kernel_size - 1) / 2
                     + 1,
                     dilation_base,
                 )
             )
             # logger.info("Number of layers chosen: " + str(num_layers))
         elif num_layers is None:
-            num_layers = math.ceil(
-                (self.input_chunk_length - 1) / (kernel_size - 1) / 2
-            )
+            num_layers = math.ceil((input_length - 1) / (kernel_size - 1) / 2)
             # logger.info("Number of layers chosen: " + str(num_layers))
         self.num_layers = num_layers
 

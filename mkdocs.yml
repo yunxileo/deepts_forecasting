@@ -7,8 +7,11 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Usage: usage.md
-  - Modules: api.md
-#  - API: reference/
+  - API:
+    - TimeSeriesDataSet: api/dataset.md
+    - Models:
+      - nbeats: api/nbeats.md
+      - tcn: api/tcn.md
   - Examples:
     - seq2seq model: examples/getting_started.ipynb
     - deepar mdel: examples/deepar.ipynb
@@ -63,23 +66,31 @@ plugins:
       ignore_h1_titles: True
       execute: False
       allow_errors: false
-#  - mkdocstrings:
-#      handlers:
-#        python:
-#          import:
-#          - https://docs.python.org/3/objects.inv
-#          selection:
-#            docstring_style: google
-#            docstring_options:
-#              ignore_init_summary: yes
-#          rendering:
-#            show_submodules: no
-#            docstring_section_style: list
-#            members_order: alphabetical
-#            show_category_heading: no
-#            merge_init_into_class: yes
-#      watch:
-#        - deepts_forecasting
+  - mkdocstrings:
+      handlers:
+        python:
+          import:
+          - https://docs.python.org/3/objects.inv
+          selection:
+            docstring_style: google
+            docstring_options:
+            filters:
+                - "!^_"  # exclude all members starting with _
+                - "!^@"
+          rendering:
+            show_submodules: no
+            show_root_heading: yes
+            docstring_section_style: list
+            members_order: alphabetical
+            show_category_heading: no
+            merge_init_into_class: yes
+            heading_level: 3
+            show_if_no_docstring: false
+            show_root_full_path: true
+
+
+      watch:
+        - deepts_forecasting
 extra:
   social:
     - icon: fontawesome/brands/twitter

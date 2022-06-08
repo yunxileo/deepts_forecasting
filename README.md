@@ -32,7 +32,9 @@ The models can all be used in the same way, using `fit()` and `predict()` functi
 
 ## Features
 
-* TODO
+- Univariate model and multivariate model
+- Point estimation and interval estimation
+- Unified modelling with Multiple items
 
 
 ## Models list
