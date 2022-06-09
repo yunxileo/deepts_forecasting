@@ -40,6 +40,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
     <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
     
       
@@ -204,11 +206,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../api/" class="md-tabs__link">
-      Modules
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/dataset/" class="md-tabs__link">
+        API
+      </a>
+    </li>
+  
 
       
         
@@ -367,10 +373,116 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../api/" class="md-nav__link">
-        Modules
+      <a href="../../api/dataset/" class="md-nav__link">
+        TimeSeriesDataSet
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Models" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/nbeats/" class="md-nav__link">
+        nbeats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/tcn/" class="md-nav__link">
+        tcn
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -555,6 +667,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#model-saved-and-inference" class="md-nav__link">
+    Model saved and inference
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -728,6 +847,13 @@
         <li class="md-nav__item">
   <a href="#train-model-with-early-stopping" class="md-nav__link">
     Train model with early stopping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-saved-and-inference" class="md-nav__link">
+    Model saved and inference
   </a>
   
 </li>
@@ -1838,7 +1964,7 @@ Licensed under the Apache License, Version 2.0.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1925,7 +2051,7 @@ from deepts_forecasting.models.tcn.tcn import TCNModel</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -1974,7 +2100,7 @@ data.head()</div>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
@@ -2080,7 +2206,7 @@ data.head()</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2184,7 +2310,7 @@ val_dataloader = DataLoader(validation, batch_size=batch_size, shuffle=False, dr
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2223,7 +2349,7 @@ val_dataloader = DataLoader(validation, batch_size=batch_size, shuffle=False, dr
                               <span class="n">target_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                               <span class="n">dropout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                               <span class="p">)</span>
-                                      
+
 <span class="n">model</span><span class="o">.</span><span class="n">summarize</span>
 </pre></div>
 <div id="cell-5" class="clipboard-copy-txt">pl.seed_everything(123)
@@ -2250,7 +2376,7 @@ model = TCNModel.from_dataset(training,
                               target_size=1,
                               dropout=0.2,
                               )
-                                      
+
 model.summarize</div>
     
         </div>
@@ -2284,7 +2410,7 @@ IPU available: False, using: 0 IPUs
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
 
 
@@ -2325,7 +2451,7 @@ IPU available: False, using: 0 IPUs
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2360,7 +2486,7 @@ IPU available: False, using: 0 IPUs
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
 
 
@@ -2403,13 +2529,13 @@ IPU available: False, using: 0 IPUs
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2427,38 +2553,10 @@ IPU available: False, using: 0 IPUs
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span> <span class="n">train_dataloader</span><span class="o">=</span><span class="n">train_dataloader</span><span class="p">,</span> <span class="n">val_dataloaders</span><span class="o">=</span><span class="n">val_dataloader</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="c1"># (given that we use early stopping, this is not necessarily the last epoch)</span>
-<span class="n">best_model_path</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span>
-<span class="n">best_model</span> <span class="o">=</span> <span class="n">TCNModel</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span>
-
-<span class="c1"># calcualte mean absolute error on validation set</span>
-<span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">transform_output</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">target_scale</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;target_scale&#39;</span><span class="p">])</span>
-                     <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)])</span>
-<span class="n">predictions</span><span class="p">,</span> <span class="n">x_index</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)</span>
-<span class="n">mae</span> <span class="o">=</span> <span class="p">(</span><span class="n">actuals</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="c1"># print(&#39;predictions shape is:&#39;, predictions.shape)</span>
-<span class="c1"># print(&#39;actuals shape is:&#39;, actuals.shape)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">actuals</span><span class="p">,</span> <span class="n">predictions</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE is:&#39;</span><span class="p">,</span> <span class="n">mae</span><span class="p">)</span>
 </pre></div>
 <div id="cell-7" class="clipboard-copy-txt">trainer.fit(
     model, train_dataloader=train_dataloader, val_dataloaders=val_dataloader,
-)
-
-# (given that we use early stopping, this is not necessarily the last epoch)
-best_model_path = trainer.checkpoint_callback.best_model_path
-best_model = TCNModel.load_from_checkpoint(best_model_path)
-
-# calcualte mean absolute error on validation set
-actuals = torch.cat([model.transform_output(prediction=y, target_scale=x['target_scale'])
-                     for x, y in iter(val_dataloader)])
-predictions, x_index = best_model.predict(val_dataloader)
-mae = (actuals - predictions).abs().mean()
-# print('predictions shape is:', predictions.shape)
-# print('actuals shape is:', actuals.shape)
-print(torch.cat([actuals, predictions]))
-print('MAE is:', mae)</div>
+)</div>
     
         </div>
     </div>
@@ -2466,111 +2564,25 @@ print('MAE is:', mae)</div>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-  | Name            | Type       | Params
------------------------------------------------
-0 | loss            | MSELoss    | 0     
-1 | logging_metrics | ModuleList | 0     
-2 | dropout         | Dropout    | 0     
-3 | out_linear      | Linear     | 228   
-4 | res_blocks      | ModuleList | 1.2 K 
------------------------------------------------
-1.4 K     Trainable params
-0         Non-trainable params
-1.4 K     Total params
-0.006     Total estimated model params size (MB)
-D:\Anaconda3\envs\DeepTS_Forecasting\lib\site-packages\pytorch_lightning\callbacks\model_checkpoint.py:631: UserWarning: Checkpoint directory lightning_logs\default\version_18\checkpoints exists and is not empty.
-  rank_zero_warn(f&#34;Checkpoint directory {dirpath} exists and is not empty.&#34;)
-</pre>
 </div>
 </div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>                                                                             </pre>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="model-saved-and-inference">Model saved and inference<a class="anchor-link" href="#model-saved-and-inference">&#182;</a></h2>
 </div>
 </div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Global seed set to 123
-</pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>tensor([[[417.0000],
-         [391.0000],
-         [419.0000],
-         [461.0000],
-         [472.0000],
-         [535.0000],
-         [622.0000],
-         [606.0000],
-         [508.0000],
-         [461.0000],
-         [390.0000],
-         [432.0000]],
-
-        [[401.7584],
-         [402.7410],
-         [420.2169],
-         [433.6198],
-         [467.2556],
-         [554.4698],
-         [617.7528],
-         [647.0651],
-         [570.2883],
-         [484.3043],
-         [394.6578],
-         [391.2507]]], dtype=torch.float64)
-MAE is: tensor(21.3422, dtype=torch.float64)
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
@@ -2585,152 +2597,38 @@ MAE is: tensor(21.3422, dtype=torch.float64)
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;target_scale&#39;</span><span class="p">],</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-<div id="cell-8" class="clipboard-copy-txt"> for x, y in iter(val_dataloader):
-    print(x['target_scale'],y)</div>
-    
-        </div>
-    </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># (given that we use early stopping, this is not necessarily the last epoch)</span>
+<span class="n">best_model_path</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span>
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">TCNModel</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span>
 
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>tensor([[[237.7456,  88.2423]]], dtype=torch.float64) tensor([[[2.0314],
-         [1.7367],
-         [2.0541],
-         [2.5300],
-         [2.6547],
-         [3.3686],
-         [4.3545],
-         [4.1732],
-         [3.0626],
-         [2.5300],
-         [1.7254],
-         [2.2014]]])
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-        <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-9">
-            <div>
-                <span class="notice" hidden>Copied!</span>
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
-                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
-                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
-                </svg>
-                </div>
-            </clipboard-copy>
-        </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">transform_output</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">target_scale</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;target_scale&#39;</span><span class="p">])</span>
+<span class="c1"># calcualte mean absolute error on validation set</span>
+<span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">transform_output</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">target_scale</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;target_scale&#39;</span><span class="p">])</span>
                      <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)])</span>
+<span class="n">predictions</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">best_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">,</span><span class="n">return_target</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="p">(</span><span class="n">actuals</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1"># print(&#39;predictions shape is:&#39;, predictions.shape)</span>
+<span class="c1"># print(&#39;actuals shape is:&#39;, actuals.shape)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">actuals</span><span class="p">,</span> <span class="n">predictions</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;MAE is:&#39;</span><span class="p">,</span> <span class="n">mae</span><span class="p">)</span>
 </pre></div>
-<div id="cell-9" class="clipboard-copy-txt">actuals = torch.cat([model.transform_output(prediction=y, target_scale=x['target_scale'])
-                     for x, y in iter(val_dataloader)])</div>
+<div id="cell-8" class="clipboard-copy-txt"># (given that we use early stopping, this is not necessarily the last epoch)
+best_model_path = trainer.checkpoint_callback.best_model_path
+best_model = TCNModel.load_from_checkpoint(best_model_path)
+
+# calcualte mean absolute error on validation set
+actuals = torch.cat([model.transform_output(prediction=y, target_scale=x['target_scale'])
+                     for x, y in iter(val_dataloader)])
+predictions, target = best_model.predict(val_dataloader,return_target=True)
+mae = (actuals - predictions).abs().mean()
+# print('predictions shape is:', predictions.shape)
+# print('actuals shape is:', actuals.shape)
+print(torch.cat([actuals, predictions]))
+print('MAE is:', mae)</div>
     
         </div>
     </div>
 
 </div>
-</div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-        <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-10">
-            <div>
-                <span class="notice" hidden>Copied!</span>
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
-                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
-                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
-                </svg>
-                </div>
-            </clipboard-copy>
-        </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">actuals</span>
-</pre></div>
-<div id="cell-10" class="clipboard-copy-txt">actuals</div>
-    
-        </div>
-    </div>
-
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>tensor([[[417.0000],
-         [391.0000],
-         [419.0000],
-         [461.0000],
-         [472.0000],
-         [535.0000],
-         [622.0000],
-         [606.0000],
-         [508.0000],
-         [461.0000],
-         [390.0000],
-         [432.0000]]], dtype=torch.float64)</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -2745,7 +2643,7 @@ MAE is: tensor(21.3422, dtype=torch.float64)
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-11">
+            <clipboard-copy for="cell-9">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2755,9 +2653,10 @@ MAE is: tensor(21.3422, dtype=torch.float64)
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">best_model</span><span class="o">.</span><span class="n">plot_prediction</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="n">predictions</span><span class="p">)</span>
 </pre></div>
-<div id="cell-11" class="clipboard-copy-txt"></div>
+<div id="cell-9" class="clipboard-copy-txt">best_model.plot_prediction(target,predictions)
+</div>
     
         </div>
     </div>

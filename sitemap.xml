@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/</loc>
-         <lastmod>2022-05-04</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>http://yunxileo.github.io/deepts_forecasting/api/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/authors/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/contributing/</loc>
-         <lastmod>2022-05-04</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>http://yunxileo.github.io/deepts_forecasting/gen_json/</loc>
-         <lastmod>2022-05-04</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>http://yunxileo.github.io/deepts_forecasting/gen_ref_nav/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/history/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/installation/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/usage/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://yunxileo.github.io/deepts_forecasting/api/dataset/</loc>
+         <lastmod>2022-06-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://yunxileo.github.io/deepts_forecasting/api/nbeats/</loc>
+         <lastmod>2022-06-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://yunxileo.github.io/deepts_forecasting/api/tcn/</loc>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/autoformer/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/deepar/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/getting_started/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/informer/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/mqrnn/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/nbeats/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/tcn/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/tft/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://yunxileo.github.io/deepts_forecasting/examples/transformer/</loc>
-         <lastmod>2022-05-04</lastmod>
+         <lastmod>2022-06-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
